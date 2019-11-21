@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RSVPModelStoreContainer" CdmEntityContainer="RSVPEntities">
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="RSVPModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="EventEndTime" ColumnName="EventEndTime" />
+          <ScalarProperty Name="EventStartTime" ColumnName="EventStartTime" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Venue" ColumnName="Venue" />
+          <ScalarProperty Name="EventEndDate" ColumnName="EventEndDate" />
+          <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Subtitle" ColumnName="Subtitle" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Guests">
+      <EntityTypeMapping TypeName="RSVPModel.Guest">
+        <MappingFragment StoreEntitySet="Guest">
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="GuestGroupID" ColumnName="GuestGroupID" />
+          <ScalarProperty Name="RsvpID" ColumnName="RsvpID" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestGroups">
+      <EntityTypeMapping TypeName="RSVPModel.GuestGroup">
+        <MappingFragment StoreEntitySet="GuestGroup">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GuestGroupID" ColumnName="GuestGroupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RSVPs">
+      <EntityTypeMapping TypeName="RSVPModel.RSVP">
+        <MappingFragment StoreEntitySet="RSVP">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="MealSelection" ColumnName="MealSelection" />
+          <ScalarProperty Name="AtendeeEmail" ColumnName="AtendeeEmail" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="RsvpID" ColumnName="RsvpID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

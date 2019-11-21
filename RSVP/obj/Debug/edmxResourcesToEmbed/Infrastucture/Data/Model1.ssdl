@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RSVPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Subtitle" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar" MaxLength="300" />
+    <Property Name="EventStartDate" Type="date" Nullable="false" />
+    <Property Name="EventEndDate" Type="date" Nullable="false" />
+    <Property Name="Venue" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EventStartTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="EventEndTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Details" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Guest">
+    <Key>
+      <PropertyRef Name="GuestID" />
+    </Key>
+    <Property Name="GuestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventID" Type="int" Nullable="false" />
+    <Property Name="RsvpID" Type="int" Nullable="false" />
+    <Property Name="GuestGroupID" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestGroup">
+    <Key>
+      <PropertyRef Name="GuestGroupID" />
+    </Key>
+    <Property Name="GuestGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RSVP">
+    <Key>
+      <PropertyRef Name="RsvpID" />
+    </Key>
+    <Property Name="RsvpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventID" Type="int" Nullable="false" />
+    <Property Name="AtendeeEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MealSelection" Type="varchar" MaxLength="100" />
+    <Property Name="Notes" Type="varchar" MaxLength="400" />
+  </EntityType>
+  <Association Name="FK_Guest_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guest_GuestGroup">
+    <End Role="GuestGroup" Type="Self.GuestGroup" Multiplicity="0..1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestGroup">
+        <PropertyRef Name="GuestGroupID" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="GuestGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guest_RSVP">
+    <End Role="RSVP" Type="Self.RSVP" Multiplicity="1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RSVP">
+        <PropertyRef Name="RsvpID" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="RsvpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RSVP_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="RSVP" Type="Self.RSVP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="RSVP">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RSVPModelStoreContainer">
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestGroup" EntityType="Self.GuestGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RSVP" EntityType="Self.RSVP" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Guest_Events" Association="Self.FK_Guest_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Guest" EntitySet="Guest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guest_GuestGroup" Association="Self.FK_Guest_GuestGroup">
+      <End Role="GuestGroup" EntitySet="GuestGroup" />
+      <End Role="Guest" EntitySet="Guest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guest_RSVP" Association="Self.FK_Guest_RSVP">
+      <End Role="RSVP" EntitySet="RSVP" />
+      <End Role="Guest" EntitySet="Guest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RSVP_Events" Association="Self.FK_RSVP_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="RSVP" EntitySet="RSVP" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

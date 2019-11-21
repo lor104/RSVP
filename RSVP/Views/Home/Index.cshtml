@@ -1,0 +1,19 @@
+﻿@model RSVP.Infrastucture.Models.ViewModels.EventViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@foreach (var Event in Model.Events)
+{
+    <p>@Event.Title</p>
+    foreach (var Guest in Model.Guests)
+    {
+        if (Guest.EventID == Event.EventID)
+        {
+            <p>@Guest.FirstName @Guest.LastName</p>
+        }
+    }
+}

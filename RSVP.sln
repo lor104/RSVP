@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSVP", "RSVP\RSVP.csproj", "{BC629F22-2440-4809-B138-A26AD2ECB80A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC629F22-2440-4809-B138-A26AD2ECB80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC629F22-2440-4809-B138-A26AD2ECB80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC629F22-2440-4809-B138-A26AD2ECB80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC629F22-2440-4809-B138-A26AD2ECB80A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAC7CEF6-B94C-410C-97CB-4C58FE225822}
+	EndGlobalSection
+EndGlobal
