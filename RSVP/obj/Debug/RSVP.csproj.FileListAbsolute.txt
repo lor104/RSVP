@@ -92,3 +92,4 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CoreCompil
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CopyComplete
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.pdb
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csprojResolveAssemblyReference.cache
