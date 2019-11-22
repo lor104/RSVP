@@ -12,25 +12,19 @@ namespace RSVP.Infrastucture.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Event
+    public partial class Reply
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Event()
+        public Reply()
         {
             this.GuestEventJunctions = new HashSet<GuestEventJunction>();
         }
     
-        public int EventID { get; set; }
-        public string Title { get; set; }
-        public string Subtitle { get; set; }
-        public string Description { get; set; }
-        public System.DateTime EventStartDate { get; set; }
-        public System.DateTime EventEndDate { get; set; }
-        public string Venue { get; set; }
-        public string Address { get; set; }
-        public System.TimeSpan EventStartTime { get; set; }
-        public System.TimeSpan EventEndTime { get; set; }
-        public string Details { get; set; }
+        public int RepliesID { get; set; }
+        public Nullable<bool> Attending { get; set; }
+        public string AtendeeEmail { get; set; }
+        public string MealSelection { get; set; }
+        public string Notes { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GuestEventJunction> GuestEventJunctions { get; set; }

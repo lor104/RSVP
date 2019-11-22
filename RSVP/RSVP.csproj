@@ -160,7 +160,13 @@
     <Compile Include="Infrastucture\Data\Guest.cs">
       <DependentUpon>RSVP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Infrastucture\Data\GuestEventJunction.cs">
+      <DependentUpon>RSVP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastucture\Data\GuestGroup.cs">
+      <DependentUpon>RSVP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastucture\Data\Reply.cs">
       <DependentUpon>RSVP.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastucture\Data\RSVP.Context.cs">
@@ -169,6 +175,8 @@
       <DependentUpon>RSVP.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastucture\Data\RSVP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>RSVP.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastucture\Data\RSVP.Designer.cs">
@@ -176,11 +184,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RSVP.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Infrastucture\Data\RSVP1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RSVP.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Infrastucture\Models\Invite.cs" />
     <Compile Include="Infrastucture\Models\ViewModels\EventViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -199,7 +203,7 @@
     <Content Include="Infrastucture\Data\RSVP.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RSVP.edmx</DependentUpon>
-      <LastGenOutput>RSVP1.cs</LastGenOutput>
+      <LastGenOutput>RSVP.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -238,6 +242,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\RSVP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

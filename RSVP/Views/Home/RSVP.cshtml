@@ -1,0 +1,32 @@
+﻿@model RSVP.Infrastucture.Models.InviteViewModel
+@{
+    ViewBag.Title = "RSVP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RSVP</h2>
+
+@using (Html.BeginForm("RSVP", "Home", FormMethod.Post))
+{
+    @Html.LabelFor(x => Model.FirstName)
+    @Html.TextBoxFor(x => Model.FirstName)
+    @Html.ValidationMessageFor(x => Model.FirstName)
+
+    @Html.LabelFor(x => Model.LastName)
+    @Html.TextBoxFor(x => Model.LastName)
+    @Html.ValidationMessageFor(x => Model.LastName)
+
+    @Html.LabelFor(x => Model.AtendeeEmail)
+    @Html.TextBoxFor(x => Model.AtendeeEmail)
+    @Html.ValidationMessageFor(x => Model.AtendeeEmail)
+
+    <label>Attending:</label>
+    @Html.RadioButtonFor(x => Model.Attending, true)
+    @Html.ValidationMessageFor(x => Model.Attending)
+    <label>Not Attending:</label>
+    @Html.RadioButtonFor(x => Model.Attending, false)
+    @Html.ValidationMessageFor(x => Model.Attending)
+
+    <input type="submit" />
+}
+

@@ -14,15 +14,19 @@ namespace RSVP.Infrastucture.Data
     
     public partial class Guest
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Guest()
+        {
+            this.GuestEventJunctions = new HashSet<GuestEventJunction>();
+        }
+    
         public int GuestID { get; set; }
-        public int EventID { get; set; }
-        public Nullable<int> RsvpID { get; set; }
         public Nullable<int> GuestGroupID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
     
-        public virtual Event Event { get; set; }
         public virtual GuestGroup GuestGroup { get; set; }
-        public virtual RSVP RSVP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GuestEventJunction> GuestEventJunctions { get; set; }
     }
 }

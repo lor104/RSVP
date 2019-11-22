@@ -9,11 +9,17 @@
 @foreach (var Event in Model.Events)
 {
     <p>@Event.Title</p>
-    foreach (var Guest in Model.Guests)
+    foreach (var GuestEvent in Model.GuestEventJunctions)
     {
-        if (Guest.EventID == Event.EventID)
+        if (GuestEvent.EventID == Event.EventID)
         {
-            <p>@Guest.FirstName @Guest.LastName</p>
+            foreach (var Guest in Model.Guests)
+            {
+                if (Guest.GuestID == GuestEvent.GuestID)
+                {
+                    <p>@Guest.FirstName @Guest.LastName</p>
+                }
+            }
         }
     }
 }

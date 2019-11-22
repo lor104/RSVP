@@ -10,5 +10,6 @@ namespace RSVP.Infrastucture.Models.ViewModels
     {
         public List<Event> Events { get; set; }
         public List<Guest> Guests { get; set; }
+        public List<GuestEventJunction> GuestEventJunctions { get; set; }
     }
 }
