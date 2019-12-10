@@ -16,7 +16,7 @@
     @Html.TextBoxFor(x => Model.LastName)
     @Html.ValidationMessageFor(x => Model.LastName)
 
-    @Html.LabelFor(x => Model.AtendeeEmail)
+    @*@Html.LabelFor(x => Model.AtendeeEmail)
     @Html.TextBoxFor(x => Model.AtendeeEmail)
     @Html.ValidationMessageFor(x => Model.AtendeeEmail)
 
@@ -25,7 +25,7 @@
     @Html.ValidationMessageFor(x => Model.Attending)
     <label>Not Attending:</label>
     @Html.RadioButtonFor(x => Model.Attending, false)
-    @Html.ValidationMessageFor(x => Model.Attending)
+    @Html.ValidationMessageFor(x => Model.Attending)*@
 
     <input type="submit" />
 }

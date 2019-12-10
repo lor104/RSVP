@@ -160,6 +160,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\API\EventController.cs" />
     <Compile Include="Controllers\API\GuestEventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -195,6 +196,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RSVP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Infrastucture\Models\DTOs\EventDTO.cs" />
     <Compile Include="Infrastucture\Models\DTOs\GuestEventDTO.cs" />
     <Compile Include="Infrastucture\Models\Invite.cs" />
     <Compile Include="Infrastucture\Models\ViewModels\EventViewModel.cs" />

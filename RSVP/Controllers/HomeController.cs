@@ -52,8 +52,8 @@ namespace RSVP.Controllers
                     {
                         // Create the reply object
                         Reply mynewRSVP = new Reply();
-                        mynewRSVP.AtendeeEmail = model.AtendeeEmail;
-                        mynewRSVP.Attending = model.Attending;
+                        //mynewRSVP.AtendeeEmail = model.AtendeeEmail;
+                        //mynewRSVP.Attending = model.Attending;
                         
                         //find guestID in the junction table
                         GuestEventJunction guestEventJunction = db.GuestEventJunctions.FirstOrDefault(x => x.GuestID == guest.GuestID);

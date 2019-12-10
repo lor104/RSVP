@@ -16,12 +16,12 @@ namespace RSVP.Infrastucture.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Email is super duper required")]
-        [Display(Name = "Atendee Email")]
-        public string AtendeeEmail { get; set; }
+        //[Required(ErrorMessage = "Email is super duper required")]
+        //[Display(Name = "Atendee Email")]
+        //public string AtendeeEmail { get; set; }
 
-        [Required(ErrorMessage = "Last name is super duper required")]
-        [Display(Name = "Attending")]
-        public bool Attending { get; set; }
+        //[Required(ErrorMessage = "Last name is super duper required")]
+        //[Display(Name = "Attending")]
+        //public bool Attending { get; set; }
     }
 }

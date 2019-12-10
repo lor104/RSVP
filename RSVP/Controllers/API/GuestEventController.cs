@@ -17,7 +17,7 @@ namespace RSVP.Controllers
     public class GuestEventController : ApiController
     {
         //return list of all guesteventjunctions
-        public List<GuestEventJunction> Get()
+        public List<GuestEventJunction> GetAll()
         {
             using (RSVPEntities db = new RSVPEntities())
             {
@@ -28,7 +28,7 @@ namespace RSVP.Controllers
         }
 
         //return list of all event ids that a guest (Id) is invited to
-        public IHttpActionResult Get(int Id)
+        public IHttpActionResult GetEventsForGuest(int Id)
         {
 
             using (RSVPEntities db = new RSVPEntities())
