@@ -54,15 +54,14 @@ namespace RSVP.Controllers
                         Reply mynewRSVP = new Reply();
                         mynewRSVP.AtendeeEmail = model.AtendeeEmail;
                         mynewRSVP.Attending = model.Attending;
-
-                        //guest.GuestID
-                        //guest.RepliesID
-
+                        
+                        //find guestID in the junction table
                         GuestEventJunction guestEventJunction = db.GuestEventJunctions.FirstOrDefault(x => x.GuestID == guest.GuestID);
 
-                        // Insert the reply object in order to associate it to the dbContext (dbcontext is used to keep track of objects)
+                        // Insert the reply object in order to associate it to the dbCo ntext (dbcontext is used to keep track of objects)
                         db.Replies.Add(mynewRSVP);
 
+                        //save changes to db in order to access 
                         db.SaveChanges();
 
                         // Associate the guest to the reply

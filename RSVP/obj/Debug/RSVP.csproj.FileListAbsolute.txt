@@ -92,4 +92,10 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CoreCompil
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CopyComplete
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.pdb
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csprojResolveAssemblyReference.cache
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Net.Http.Formatting.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.WebHost.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Net.Http.Formatting.xml
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.xml
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.WebHost.xml
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csprojAssemblyReference.cache

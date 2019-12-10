@@ -30,3 +30,18 @@
     <input type="submit" />
 }
 
+
+    <script>
+        var $ = jQuery
+        $(document).ready(function () {
+            $.ajax({
+                url: '/api/EventRSVP/1',
+                contentType: 'application/json',
+                method: 'GET',
+            }).done(function (data) {
+                console.log(data)
+            }).fail(function (error) {
+                console.log(error)
+            })
+        })
+    </script>
