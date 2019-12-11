@@ -51,6 +51,7 @@ namespace RSVP.Controllers
 
             using (RSVPEntities db = new RSVPEntities())
             {
+                db.Configuration.ProxyCreationEnabled = false;
                 List<GuestEventJunction> guestEventJunction = db.GuestEventJunctions.Where(x => x.EventID == Id).ToList();
 
                 GuestEventDTO guestEventDTO = new GuestEventDTO()
@@ -58,7 +59,15 @@ namespace RSVP.Controllers
                     GuestEventList = guestEventJunction.Select(x => x.GuestID).ToList()
                 };
 
-                return Ok(guestEventDTO);
+
+                List<Guest> guests = new List<Guest>();
+                foreach (int guestId in guestEventDTO.GuestEventList)
+                {
+                    Guest guest = db.Guests.FirstOrDefault(x => x.GuestID == guestId);
+                    guests.Add(guest);
+                }
+
+                return Ok(guests.ToList());
             }
 
         }
