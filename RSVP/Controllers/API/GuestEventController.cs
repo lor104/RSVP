@@ -44,6 +44,24 @@ namespace RSVP.Controllers
             }
 
         }
+
+        //return list of all guest ids that a event (Id) is invited to
+        public IHttpActionResult GetGuestsForEvent(int Id)
+        {
+
+            using (RSVPEntities db = new RSVPEntities())
+            {
+                List<GuestEventJunction> guestEventJunction = db.GuestEventJunctions.Where(x => x.EventID == Id).ToList();
+
+                GuestEventDTO guestEventDTO = new GuestEventDTO()
+                {
+                    GuestEventList = guestEventJunction.Select(x => x.GuestID).ToList()
+                };
+
+                return Ok(guestEventDTO);
+            }
+
+        }
     }
 }
 
