@@ -41,12 +41,12 @@ namespace RSVP.Controllers
                     Title = eventx.Title,
                     Subtitle = eventx.Subtitle,
                     Description = eventx.Description,
-                    EventStartDate = eventx.EventStartDate,
-                    EventEndDate = eventx.EventEndDate,
+                    EventStartDate = eventx.EventStartDate.ToString("MMMM dd, yyyy"),
+                    EventEndDate = eventx.EventEndDate.ToString("MMMM dd, yyyy"),
                     Venue = eventx.Venue,
                     Address = eventx.Address,
-                    EventStartTime = eventx.EventStartTime,
-                    EventEndTime = eventx.EventEndTime,
+                    EventStartTime = eventx.EventStartTime.ToString(),
+                    EventEndTime = eventx.EventEndTime.ToString(),
                     Details = eventx.Details
                 };
                                

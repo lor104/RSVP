@@ -50,26 +50,27 @@ namespace RSVP.Controllers
 
                     if (guest != null)
                     {
-                        // Create the reply object
-                        Reply mynewRSVP = new Reply();
-                        //mynewRSVP.AtendeeEmail = model.AtendeeEmail;
-                        //mynewRSVP.Attending = model.Attending;
-                        
-                        //find guestID in the junction table
-                        GuestEventJunction guestEventJunction = db.GuestEventJunctions.FirstOrDefault(x => x.GuestID == guest.GuestID);
+                        //// Create the reply object
+                        //Reply mynewRSVP = new Reply();
+                        ////mynewRSVP.AtendeeEmail = model.AtendeeEmail;
+                        ////mynewRSVP.Attending = model.Attending;
 
-                        // Insert the reply object in order to associate it to the dbCo ntext (dbcontext is used to keep track of objects)
-                        db.Replies.Add(mynewRSVP);
+                        ////find guestID in the junction table
+                        //GuestEventJunction guestEventJunction = db.GuestEventJunctions.FirstOrDefault(x => x.GuestID == guest.GuestID);
 
-                        //save changes to db in order to access 
-                        db.SaveChanges();
+                        //// Insert the reply object in order to associate it to the dbCo ntext (dbcontext is used to keep track of objects)
+                        //db.Replies.Add(mynewRSVP);
 
-                        // Associate the guest to the reply
-                        Reply reply = db.Replies.FirstOrDefault(x => x.RepliesID == mynewRSVP.RepliesID);
-                        guestEventJunction.RepliesID = reply.RepliesID;
+                        ////save changes to db in order to access 
+                        //db.SaveChanges();
 
-                        // Push changes to sql server via db.savechanges()
-                        db.SaveChanges();
+                        //// Associate the guest to the reply
+                        //Reply reply = db.Replies.FirstOrDefault(x => x.RepliesID == mynewRSVP.RepliesID);
+                        //guestEventJunction.RepliesID = reply.RepliesID;
+
+                        //// Push changes to sql server via db.savechanges()
+                        //db.SaveChanges();
+                        //return;
                     }
 
                 }

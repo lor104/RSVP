@@ -12,6 +12,12 @@ namespace RSVP
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "DefaultApi1",
+                routeTemplate: "api/Guest/GetGuestFromName/{name}",
+                defaults: new { name = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }

@@ -6,7 +6,7 @@
 
 <h2>RSVP</h2>
 
-@using (Html.BeginForm("RSVP", "Home", FormMethod.Post))
+@using (Html.BeginForm("RSVP", "Home", FormMethod.Post, new { id = "rsvp-form" }))
 {
     @Html.LabelFor(x => Model.FirstName)
     @Html.TextBoxFor(x => Model.FirstName)
@@ -30,18 +30,86 @@
     <input type="submit" />
 }
 
+    <div class="events">
+    </div>
 
     <script>
-        var $ = jQuery
+        //var $ = jQuery
         $(document).ready(function () {
             $.ajax({
-                url: '/api/EventRSVP/1',
+                url: '/api/GuestEvent/GetGuestsForEvent/1',
                 contentType: 'application/json',
                 method: 'GET',
             }).done(function (data) {
                 console.log(data)
+                data.forEach(function (guest) {
+                    console.log(guest.FirstName, guest.LastName)
+                })
             }).fail(function (error) {
                 console.log(error)
             })
+
+            $('#rsvp-form').submit(function (e) {
+                e.preventDefault();
+                console.log(e);
+
+                var object = {
+                    FirstName: $('#FirstName').val(),
+                    LastName: $('#LastName').val()
+                }
+
+                $.ajax({
+                    url: '/api/Guest/GetEventInfoFromName/' + object.FirstName + "_" + object.LastName,
+                    contentType: 'application/json',
+                    method: 'GET',
+                    async: false,
+                }).done(function (data) {
+                    $('.events').html('');
+                    console.log(data);
+
+                    var events = data;
+
+                    data.forEach(function (event) {
+                        console.log(event)
+                        $('.events')
+                        var $parentDiv = $('<div>').addClass('eventItem').attr('data-eventID', event.eventID);
+                        $('<h2>').html(event.title).appendTo($parentDiv)
+                        $('<h3>').html(event.subtitle).appendTo($parentDiv)
+                        $('<h4>').html(event.eventStartDate).appendTo($parentDiv)
+                        $('<h5>').html(formatTime(event.eventStartTime) + " until " + formatTime(event.eventEndTime)).appendTo($parentDiv)
+                        $('<p>').html(event.description).appendTo($parentDiv)
+                        $('<h4>').html(event.venue).appendTo($parentDiv)
+                        $('<h5>').html(event.address).appendTo($parentDiv)
+                        $('<p>').html(event.details).appendTo($parentDiv)
+
+                        $('.events').append($parentDiv)
+                    })
+                }).fail(function (error) {
+                    console.log(error)
+                })
+
+            })
         })
+
+        function formatTime(timeSpan) {
+            var time = timeSpan.split(":");
+            time.pop();
+            var unit = "";
+
+            var timeString = "";
+
+            if (time[0][0] == 0) {
+                console.log("adg")
+                time[0] = time[0][1];
+            }
+
+            if (0 < parseInt(time[0]) && parseInt(time[0]) < 12) {
+                unit = "AM";
+                timeString = time[0] + ":" + time[1] + " " + unit;
+            } else if (12 < parseInt(time[0]) && parseInt(time[0])  < 24) {
+                unit = "PM";
+                timeString = (parseInt(time[0]) - 12) + ":" + time[1] + " " + unit;
+            }
+            return timeString
+        }
     </script>
