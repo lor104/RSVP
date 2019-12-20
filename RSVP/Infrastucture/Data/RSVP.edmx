@@ -29,6 +29,7 @@
           <Property Name="GuestGroupID" Type="int" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsChild" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="GuestEventJunction">
           <Key>
@@ -55,6 +56,7 @@
           <Property Name="AtendeeEmail" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MealSelection" Type="varchar" MaxLength="100" />
           <Property Name="Notes" Type="varchar" MaxLength="400" />
+          <Property Name="NeedParking" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Guest_GuestGroup">
           <End Role="GuestGroup" Type="Self.GuestGroup" Multiplicity="0..1" />
@@ -181,6 +183,7 @@
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GuestGroup" Relationship="RSVPModel.FK_Guest_GuestGroup" FromRole="Guest" ToRole="GuestGroup" />
           <NavigationProperty Name="GuestEventJunctions" Relationship="RSVPModel.FK_GuestEventJunction_Guest" FromRole="Guest" ToRole="GuestEventJunction" />
+          <Property Name="IsChild" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="GuestEventJunction">
           <Key>
@@ -212,6 +215,7 @@
           <Property Name="MealSelection" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Notes" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GuestEventJunctions" Relationship="RSVPModel.FK_GuestEventJunction_Replies" FromRole="Reply" ToRole="GuestEventJunction" />
+          <Property Name="NeedParking" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_GuestEventJunction_Events">
           <End Type="RSVPModel.Event" Role="Event" Multiplicity="1" />
@@ -287,6 +291,7 @@
           <EntitySetMapping Name="Guests">
             <EntityTypeMapping TypeName="RSVPModel.Guest">
               <MappingFragment StoreEntitySet="Guest">
+                <ScalarProperty Name="IsChild" ColumnName="IsChild" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="GuestGroupID" ColumnName="GuestGroupID" />
@@ -314,6 +319,7 @@
           <EntitySetMapping Name="Replies">
             <EntityTypeMapping TypeName="RSVPModel.Reply">
               <MappingFragment StoreEntitySet="Replies">
+                <ScalarProperty Name="NeedParking" ColumnName="NeedParking" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="MealSelection" ColumnName="MealSelection" />
                 <ScalarProperty Name="AtendeeEmail" ColumnName="AtendeeEmail" />

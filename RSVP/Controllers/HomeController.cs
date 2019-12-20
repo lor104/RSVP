@@ -40,6 +40,45 @@ namespace RSVP.Controllers
         }
 
         [HttpPost]
+        public ActionResult GuestInvited(InviteViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                using (RSVPEntities db = new RSVPEntities())
+                {
+                    Guest guest = db.Guests.FirstOrDefault(x => x.FirstName == model.FirstName && x.LastName == model.LastName);
+
+                    if (guest != null)
+                    {
+                        //// Create the reply object
+                        //Reply mynewRSVP = new Reply();
+                        ////mynewRSVP.AtendeeEmail = model.AtendeeEmail;
+                        ////mynewRSVP.Attending = model.Attending;
+
+                        ////find guestID in the junction table
+                        //GuestEventJunction guestEventJunction = db.GuestEventJunctions.FirstOrDefault(x => x.GuestID == guest.GuestID);
+
+                        //// Insert the reply object in order to associate it to the dbContext (dbcontext is used to keep track of objects)
+                        //db.Replies.Add(mynewRSVP);
+
+                        ////save changes to db in order to access 
+                        //db.SaveChanges();
+
+                        //// Associate the guest to the reply
+                        //Reply reply = db.Replies.FirstOrDefault(x => x.RepliesID == mynewRSVP.RepliesID);
+                        //guestEventJunction.RepliesID = reply.RepliesID;
+
+                        //// Push changes to sql server via db.savechanges()
+                        //db.SaveChanges();
+                        //return;
+                    }
+
+                }
+            }
+            return View(model);
+        }
+
+        [HttpPost]
         public ActionResult RSVP(InviteViewModel model)
         {
             if(ModelState.IsValid)
@@ -58,7 +97,7 @@ namespace RSVP.Controllers
                         ////find guestID in the junction table
                         //GuestEventJunction guestEventJunction = db.GuestEventJunctions.FirstOrDefault(x => x.GuestID == guest.GuestID);
 
-                        //// Insert the reply object in order to associate it to the dbCo ntext (dbcontext is used to keep track of objects)
+                        //// Insert the reply object in order to associate it to the dbContext (dbcontext is used to keep track of objects)
                         //db.Replies.Add(mynewRSVP);
 
                         ////save changes to db in order to access 

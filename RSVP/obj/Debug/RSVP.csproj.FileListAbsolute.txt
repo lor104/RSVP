@@ -1,3 +1,10 @@
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\VBCSCompiler.exe
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\ApplicationInsights.config
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\RSVP.dll.config
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\RSVP.dll
@@ -9,18 +16,13 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\csi.exe
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\csi.exe.config
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\csi.rsp
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\Microsoft.Win32.Primitives.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.AppContext.dll
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Collections.Immutable.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Console.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Diagnostics.Process.dll
@@ -30,7 +32,6 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.IO.FileSystem.
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.IO.Pipes.dll
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Security.AccessControl.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Security.Claims.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Security.Cryptography.Algorithms.dll
@@ -48,7 +49,6 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\System.Xml.XPath.XDoc
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\vbc.exe
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\vbc.exe.config
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\vbc.rsp
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\VBCSCompiler.exe
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Antlr3.Runtime.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\EntityFramework.dll
@@ -63,7 +63,10 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Microsoft.ApplicationInsight
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Newtonsoft.Json.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Net.Http.Formatting.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Helpers.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.dll
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.WebHost.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Mvc.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Optimization.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Razor.dll
@@ -74,6 +77,9 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\WebGrease.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\EntityFramework.xml
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\EntityFramework.SqlServer.xml
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Net.Http.Formatting.xml
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.xml
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.WebHost.xml
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Helpers.xml
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Mvc.xml
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Optimization.xml
@@ -92,10 +98,4 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CoreCompil
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CopyComplete
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.pdb
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Net.Http.Formatting.dll
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.dll
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.WebHost.dll
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Net.Http.Formatting.xml
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.xml
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\System.Web.Http.WebHost.xml
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csprojAssemblyReference.cache

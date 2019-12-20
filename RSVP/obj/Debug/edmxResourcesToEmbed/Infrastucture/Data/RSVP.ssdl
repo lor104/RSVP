@@ -24,6 +24,7 @@
     <Property Name="GuestGroupID" Type="int" />
     <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsChild" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="GuestEventJunction">
     <Key>
@@ -50,6 +51,7 @@
     <Property Name="AtendeeEmail" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="MealSelection" Type="varchar" MaxLength="100" />
     <Property Name="Notes" Type="varchar" MaxLength="400" />
+    <Property Name="NeedParking" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_Guest_GuestGroup">
     <End Role="GuestGroup" Type="Self.GuestGroup" Multiplicity="0..1" />

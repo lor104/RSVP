@@ -21,6 +21,7 @@
     <EntitySetMapping Name="Guests">
       <EntityTypeMapping TypeName="RSVPModel.Guest">
         <MappingFragment StoreEntitySet="Guest">
+          <ScalarProperty Name="IsChild" ColumnName="IsChild" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="GuestGroupID" ColumnName="GuestGroupID" />
@@ -48,6 +49,7 @@
     <EntitySetMapping Name="Replies">
       <EntityTypeMapping TypeName="RSVPModel.Reply">
         <MappingFragment StoreEntitySet="Replies">
+          <ScalarProperty Name="NeedParking" ColumnName="NeedParking" />
           <ScalarProperty Name="Notes" ColumnName="Notes" />
           <ScalarProperty Name="MealSelection" ColumnName="MealSelection" />
           <ScalarProperty Name="AtendeeEmail" ColumnName="AtendeeEmail" />

@@ -78,7 +78,7 @@ namespace RSVP.Controllers.API
         [Route("api/Guest/GetEventInfoFromName/{FirstAndLastName}")]
         public IHttpActionResult GetEventInfoFromName(string FirstAndLastName)
         {
-            char[] seperator = { '?', '_' };
+            char[] seperator = { '?', ' ', '_' };
             String[] Name = FirstAndLastName.Split(seperator, 2, StringSplitOptions.RemoveEmptyEntries);
             string FirstName = Name[0];
             string LastName = Name[1];
