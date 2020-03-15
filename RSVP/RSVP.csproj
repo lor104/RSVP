@@ -217,6 +217,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\emblem.svg" />
+    <Content Include="Images\leaf.jpg" />
+    <Content Include="Images\petals.jpg" />
     <Content Include="Infrastucture\Data\RSVP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RSVP.edmx</DependentUpon>

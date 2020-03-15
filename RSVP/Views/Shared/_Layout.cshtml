@@ -4,36 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,600,700|Libre+Baskerville:400,400i,700&display=swap" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
+    <div class="navigation">
+        <div class="menu">
+            <ul>
+                <li>@Html.ActionLink("Details", "Details", "Home")</li>
+                <li>@Html.ActionLink("Directions", "Directions", "Home")</li>
+                <li>@Html.ActionLink("Accomodations", "Accomodations", "Home")</li>
+                <li>@Html.ActionLink("RSVP", "RSVP", "Home")</li>
+                <li>@Html.ActionLink("Registry", "Registry", "Home")</li>
+            </ul>
         </div>
     </div>
-
-    @*details
-    directions
-    accomodations
-    rsvp
-    registry*@
+ 
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -1,2 +1,52 @@
-﻿body {
+﻿$ccolor-background: white;
+$color-text: black;
+$color-heading: black;
+$color-brown: #ddcec0;
+
+//fonts
+@mixin crimson {
+    font-family: 'Crimson Text', serif;
+}
+@mixin baskerville {
+    font-family: 'Libre Baskerville', serif;
+}
+
+//navigation styling
+
+@mixin italic {
+    @include baskerville;
+    font-style: italic;
+    text-decoration: none;
+    letter-spacing: 2.5px;
+    color: $color-text;
+
+    &:hover {
+        color: $color-text;
+        text-decoration: none;
+    }
+}
+
+.navigation {
+    background: $color-brown;
+
+    .menu {
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            li {
+                list-style-type: none;
+                margin: 15px 50px;
+
+                a {
+                    @include italic;
+                    font-size: 12px;
+                    text-transform: lowercase;
+                    
+                }
+            }
+        }
+    }
 }
