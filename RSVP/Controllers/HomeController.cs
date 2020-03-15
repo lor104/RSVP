@@ -33,6 +33,25 @@ namespace RSVP.Controllers
             }
         }
 
+        public ActionResult Details()
+        {
+            return View();
+        }
+
+        public ActionResult Directions()
+        {
+            return View();
+        }
+
+        public ActionResult Accomodations()
+        {
+            return View();
+        }
+        public ActionResult Registry()
+        {
+            return View();
+        }
+
         public ActionResult RSVP()
         {
             InviteViewModel viewModel = new InviteViewModel();

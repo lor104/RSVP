@@ -94,7 +94,6 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Microsoft.AI.DependencyColle
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\bin\Microsoft.AI.Web.xml
-C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CoreCompileInputs.cache
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CopyComplete
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.pdb
