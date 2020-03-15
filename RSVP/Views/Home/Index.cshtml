@@ -5,8 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-@foreach (var Event in Model.Events)
+<div class="content landing-page">
+    <div class="center">
+        <img  class="leaf" src="~/Images/leaf.jpg" alt="Leaf Image" />
+        <div class="border">
+            <div class="box-content">
+                <img src="/Images/emblem.svg" alt="J & B" />
+                <div class="text">
+                    <h1>
+                        JORDANA <span>and</span> BARUCH
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <img class="petals" src="~/Images/petals.jpg" alt="Petals Image" />
+    </div>
+</div>
+
+
+@*@foreach (var Event in Model.Events)
 {
     <p>@Event.Title</p>
     foreach (var GuestEvent in Model.GuestEventJunctions)
@@ -22,4 +39,4 @@
             }
         }
     }
-}
+}*@
