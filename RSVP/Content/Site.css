@@ -101,11 +101,11 @@ p {
       transform: translate(50%, 20%);
       right: 0; }
   .content.details {
-    margin-top: 175px; }
+    margin-top: 155px; }
     .content.details .ceremony, .content.details .reception {
       text-align: center; }
       .content.details .ceremony h2, .content.details .reception h2 {
-        letter-spacing: 2px;
+        letter-spacing: 4px;
         margin: 0;
         margin-bottom: 5px; }
       .content.details .ceremony h3, .content.details .reception h3 {
@@ -123,7 +123,7 @@ p {
           color: black;
           font-size: 12px; }
       .content.details .ceremony .title, .content.details .reception .title {
-        margin-bottom: 50px; }
+        margin-bottom: 70px; }
       .content.details .ceremony .date, .content.details .reception .date {
         margin-bottom: 50px; }
       .content.details .ceremony .description, .content.details .reception .description {
@@ -132,4 +132,4 @@ p {
         .content.details .ceremony .description p, .content.details .reception .description p {
           font-size: 15px; }
       .content.details .ceremony .address, .content.details .reception .address {
-        margin-bottom: 150px; }
+        margin-bottom: 120px; }

@@ -162,13 +162,13 @@ p {
     }
 
     &.details {
-        margin-top: 175px;
+        margin-top: 155px;
 
         .ceremony, .reception {
             text-align: center;
 
             h2 {
-                letter-spacing: 2px;
+                letter-spacing: 4px;
                 margin: 0;
                 margin-bottom: 5px;
             }
@@ -190,7 +190,7 @@ p {
             }
 
             .title {
-                margin-bottom: 50px;
+                margin-bottom: 70px;
             }
 
             .date {
@@ -207,7 +207,7 @@ p {
             }
 
             .address {
-                margin-bottom: 150px;
+                margin-bottom: 120px;
             }
         }
     }
