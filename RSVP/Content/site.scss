@@ -54,6 +54,27 @@ p {
     color: $color-text;
 }
 
+h2 {
+    letter-spacing: 4px;
+}
+
+h3 {
+    letter-spacing: 2px;
+}
+
+p {
+    letter-spacing: 2px;
+
+    &.italic {
+        @include italic;
+        font-size: 12px;
+    }
+}
+
+.flex {
+    display: flex;
+}
+
 .navigation {
     background: $color-brown;
 
@@ -83,22 +104,14 @@ p {
     }
 }
 
-//landing page
 .content {
     width: 95%;
     margin: auto;
-
+    margin-top: 155px;
+    //landing page
     &.landing-page {
-        /*position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);*/
         height: 100%;
         position: relative;
-
-
-        .test {
-        }
 
         .leaf {
             width: 260px;
@@ -162,31 +175,21 @@ p {
     }
 
     &.details {
-        margin-top: 155px;
-
         .ceremony, .reception {
             text-align: center;
 
             h2 {
-                letter-spacing: 4px;
                 margin: 0;
                 margin-bottom: 5px;
             }
 
             h3 {
-                letter-spacing: 2px;
                 margin: 0;
                 margin-bottom: 5px;
             }
 
             p {
-                letter-spacing: 2px;
                 margin: 0;
-
-                &.italic {
-                    @include italic;
-                    font-size: 12px;
-                }
             }
 
             .title {
@@ -208,6 +211,50 @@ p {
 
             .address {
                 margin-bottom: 120px;
+            }
+        }
+    }
+
+    &.directions {
+        width: 80%;
+        margin-bottom: 50px;
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .graydon {
+            margin-bottom: 60px;
+        }
+
+        .left {
+            width: 50%;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .right {
+            width: 50%;
+            padding-left: 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            .address {
+                margin-bottom: 60px;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .graydon {
+            .right {
+                padding-bottom: 20px;
             }
         }
     }

@@ -23,6 +23,25 @@ h4 {
 p {
   font-family: 'Crimson Text', serif; }
 
+h2 {
+  letter-spacing: 4px; }
+
+h3 {
+  letter-spacing: 2px; }
+
+p {
+  letter-spacing: 2px; }
+  p.italic {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    text-decoration: none;
+    letter-spacing: 2.5px;
+    color: black;
+    font-size: 12px; }
+
+.flex {
+  display: flex; }
+
 .navigation {
   background: #ddcec0; }
   .navigation .menu ul {
@@ -46,12 +65,9 @@ p {
 
 .content {
   width: 95%;
-  margin: auto; }
+  margin: auto;
+  margin-top: 155px; }
   .content.landing-page {
-    /*position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);*/
     height: 100%;
     position: relative; }
     .content.landing-page .leaf {
@@ -100,36 +116,48 @@ p {
       bottom: 0;
       transform: translate(50%, 20%);
       right: 0; }
-  .content.details {
-    margin-top: 155px; }
-    .content.details .ceremony, .content.details .reception {
-      text-align: center; }
-      .content.details .ceremony h2, .content.details .reception h2 {
-        letter-spacing: 4px;
-        margin: 0;
-        margin-bottom: 5px; }
-      .content.details .ceremony h3, .content.details .reception h3 {
-        letter-spacing: 2px;
-        margin: 0;
-        margin-bottom: 5px; }
-      .content.details .ceremony p, .content.details .reception p {
-        letter-spacing: 2px;
+  .content.details .ceremony, .content.details .reception {
+    text-align: center; }
+    .content.details .ceremony h2, .content.details .reception h2 {
+      margin: 0;
+      margin-bottom: 5px; }
+    .content.details .ceremony h3, .content.details .reception h3 {
+      margin: 0;
+      margin-bottom: 5px; }
+    .content.details .ceremony p, .content.details .reception p {
+      margin: 0; }
+    .content.details .ceremony .title, .content.details .reception .title {
+      margin-bottom: 70px; }
+    .content.details .ceremony .date, .content.details .reception .date {
+      margin-bottom: 50px; }
+    .content.details .ceremony .description, .content.details .reception .description {
+      width: 40%;
+      margin: 0 auto 50px; }
+      .content.details .ceremony .description p, .content.details .reception .description p {
+        font-size: 15px; }
+    .content.details .ceremony .address, .content.details .reception .address {
+      margin-bottom: 120px; }
+  .content.directions {
+    width: 80%;
+    margin-bottom: 50px; }
+    .content.directions .page-title {
+      text-align: center;
+      margin-bottom: 100px; }
+    .content.directions .graydon {
+      margin-bottom: 60px; }
+    .content.directions .left {
+      width: 50%; }
+      .content.directions .left img {
+        width: 100%; }
+    .content.directions .right {
+      width: 50%;
+      padding-left: 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; }
+      .content.directions .right .address {
+        margin-bottom: 60px; }
+      .content.directions .right p {
         margin: 0; }
-        .content.details .ceremony p.italic, .content.details .reception p.italic {
-          font-family: 'Libre Baskerville', serif;
-          font-style: italic;
-          text-decoration: none;
-          letter-spacing: 2.5px;
-          color: black;
-          font-size: 12px; }
-      .content.details .ceremony .title, .content.details .reception .title {
-        margin-bottom: 70px; }
-      .content.details .ceremony .date, .content.details .reception .date {
-        margin-bottom: 50px; }
-      .content.details .ceremony .description, .content.details .reception .description {
-        width: 40%;
-        margin: 0 auto 50px; }
-        .content.details .ceremony .description p, .content.details .reception .description p {
-          font-size: 15px; }
-      .content.details .ceremony .address, .content.details .reception .address {
-        margin-bottom: 120px; }
+    .content.directions .graydon .right {
+      padding-bottom: 20px; }
