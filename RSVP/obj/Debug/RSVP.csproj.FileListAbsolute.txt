@@ -98,3 +98,4 @@ C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CopyComple
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.dll
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.pdb
 C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csprojAssemblyReference.cache
+C:\Users\Kenneth Geris\Documents\RSVP\RSVP\RSVP\obj\Debug\RSVP.csproj.CoreCompileInputs.cache

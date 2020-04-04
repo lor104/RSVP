@@ -1,5 +1,6 @@
 ﻿body {
-  min-height: 100vh; }
+  min-height: 100vh;
+  font-family: 'Crimson Text', serif; }
 
 .main {
   height: calc(100vh - 60px); }
@@ -47,7 +48,8 @@ p {
   .navigation .menu ul {
     display: flex;
     flex-direction: row;
-    justify-content: center; }
+    justify-content: center;
+    margin-bottom: 0; }
     .navigation .menu ul li {
       list-style-type: none;
       margin: 15px 50px; }
@@ -65,8 +67,11 @@ p {
 
 .content {
   width: 95%;
-  margin: auto;
-  margin-top: 155px; }
+  margin: auto; }
+  .content .page-title {
+    padding-top: 150px;
+    text-align: center;
+    margin-bottom: 100px; }
   .content.landing-page {
     height: 100%;
     position: relative; }
@@ -161,3 +166,56 @@ p {
         margin: 0; }
     .content.directions .graydon .right {
       padding-bottom: 20px; }
+  .content.accomodations {
+    text-align: center;
+    margin-bottom: 50px; }
+    .content.accomodations .page-title {
+      margin-bottom: 100px; }
+    .content.accomodations .text {
+      width: 80%;
+      margin: 0 auto 100px; }
+    .content.accomodations .map {
+      width: 100%; }
+      .content.accomodations .map img {
+        width: 100%; }
+  .content.rsvp {
+    width: 100%;
+    padding: 0 5%;
+    min-height: 101%;
+    background: #fce9d9; }
+    .content.rsvp #rsvp-form {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: end; }
+    .content.rsvp .events {
+      text-align: center; }
+    .content.rsvp .form-input {
+      margin: 0 5px; }
+    .content.rsvp input {
+      border-radius: 0;
+      border-style: solid;
+      border-color: #efdacb;
+      background-color: #fdf3eb;
+      box-shadow: none; }
+    .content.rsvp input[type="submit"] {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      text-decoration: none;
+      letter-spacing: 2.5px;
+      color: black;
+      font-size: 11px;
+      padding-right: 30px;
+      padding-left: 30px;
+      background: #ddcec0;
+      border-color: #ddcec0;
+      border-style: solid;
+      box-shadow: none;
+      text-transform: lowercase; }
+
+label {
+  font-weight: normal;
+  letter-spacing: 2px; }
+
+input {
+  letter-spacing: 3px; }

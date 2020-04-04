@@ -219,6 +219,8 @@
     <Content Include="Global.asax" />
     <Content Include="Images\emblem.svg" />
     <Content Include="Images\leaf.jpg" />
+    <Content Include="Images\map-180-ombre.png" />
+    <Content Include="Images\map-graydon-ombre.png" />
     <Content Include="Images\petals.jpg" />
     <Content Include="Infrastucture\Data\RSVP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -315,7 +317,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55913</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55913/</IISUrl>
+          <IISUrl>http://localhost:50001/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

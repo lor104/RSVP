@@ -4,109 +4,117 @@
     ViewBag.Title = "RSVP";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <div class="content rsvp">
+        <div class="page-title">
+            <h2>RSVP</h2>
+            <p class="italic">ceremony <span>&</span> reception</p>
+        </div>
 
-<h2>RSVP</h2>
-<h4>Enter your name as it appears on the invite to RSVP to your events</h4>
+        @using (Html.BeginForm("GuestInvited", "Home", FormMethod.Post, new { id = "rsvp-form" }))
+        {
+            <div class="form-input">
+                @Html.LabelFor(x => Model.FirstName)
+                @Html.TextBoxFor(x => Model.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => Model.FirstName)
+            </div>
 
-@using (Html.BeginForm("GuestInvited", "Home", FormMethod.Post, new { id = "rsvp-form" }))
-{
-    @Html.LabelFor(x => Model.FirstName)
-    @Html.TextBoxFor(x => Model.FirstName)
-    @Html.ValidationMessageFor(x => Model.FirstName)
+            <div class="form-input">
+                @Html.LabelFor(x => Model.LastName)
+                @Html.TextBoxFor(x => Model.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => Model.LastName)
+            </div>
 
-    @Html.LabelFor(x => Model.LastName)
-    @Html.TextBoxFor(x => Model.LastName)
-    @Html.ValidationMessageFor(x => Model.LastName)
+            <div class="form-input">
+                <input class="form-control" type="submit" value="Submit"/>
+            </div>
+        }
 
-    <input type="submit" />
-}
-
-<div class="events">
-</div>
+        <div class="events">
+        </div>
+    </div>
 
 @*@using (Html.BeginForm("RSVP", "Home", FormMethod.Post, new { @class = "event-form" }))
-{
-    @Html.HiddenFor(x => Model.FirstName,)
-    @Html.HiddenFor(x => Model.LastName,)
+    {
+        @Html.HiddenFor(x => Model.FirstName,)
+        @Html.HiddenFor(x => Model.LastName,)
 
-    @Html.LabelFor(x => Model.AtendeeEmail)
-    @Html.TextBoxFor(x => Model.AtendeeEmail)
-    @Html.ValidationMessageFor(x => Model.AtendeeEmail)
+        @Html.LabelFor(x => Model.AtendeeEmail)
+        @Html.TextBoxFor(x => Model.AtendeeEmail)
+        @Html.ValidationMessageFor(x => Model.AtendeeEmail)
 
-    @Html.LabelFor(x => Model.Attending, "Attending")
-    @Html.RadioButtonFor(x => Model.Attending, true)
-    @Html.ValidationMessageFor(x => Model.Attending)
-    @Html.LabelFor(x => Model.Attending, "Not Attending")
-    @Html.RadioButtonFor(x => Model.Attending, false)
-    @Html.ValidationMessageFor(x => Model.Attending)
+        @Html.LabelFor(x => Model.Attending, "Attending")
+        @Html.RadioButtonFor(x => Model.Attending, true)
+        @Html.ValidationMessageFor(x => Model.Attending)
+        @Html.LabelFor(x => Model.Attending, "Not Attending")
+        @Html.RadioButtonFor(x => Model.Attending, false)
+        @Html.ValidationMessageFor(x => Model.Attending)
 
-    @Html.LabelFor(x => Model.MealSelection)
-    @Html.DropDownListFor(x => Model.MealSelection, new List<SelectListItem> {
-        new SelectListItem{ Text="Meal1", Value="Meal1" },
-        new SelectListItem{ Text="Meal2", Value="Meal2" },
-        new SelectListItem{ Text="Meal3", Value="Meal3" }
-    })
-    @Html.ValidationMessageFor(x => Model.MealSelection)
+        @Html.LabelFor(x => Model.MealSelection)
+        @Html.DropDownListFor(x => Model.MealSelection, new List<SelectListItem> {
+            new SelectListItem{ Text="Meal1", Value="Meal1" },
+            new SelectListItem{ Text="Meal2", Value="Meal2" },
+            new SelectListItem{ Text="Meal3", Value="Meal3" }
+        })
+        @Html.ValidationMessageFor(x => Model.MealSelection)
 
-    @Html.LabelFor(x => Model.Notes)
-    @Html.TextBoxFor(x => Model.Notes)
+        @Html.LabelFor(x => Model.Notes)
+        @Html.TextBoxFor(x => Model.Notes)
 
-    @Html.LabelFor(x => Model.NeedParking)
-    @Html.CheckBoxFor(x => Model.NeedParking, true)
+        @Html.LabelFor(x => Model.NeedParking)
+        @Html.CheckBoxFor(x => Model.NeedParking, true)
 
-    <input type="submit" />
-}*@
+        <input type="submit" />
+    }*@
 
 @*<form action="/Home/RSVP" class="event-form" method="post">
-    <input length="9" data-val="true" data-val-required="First name is super duper required" id="FirstName" name="FirstName" type="hidden" value="FirstName">
+        <input length="9" data-val="true" data-val-required="First name is super duper required" id="FirstName" name="FirstName" type="hidden" value="FirstName">
 
-    <input length="9" data-val="true" data-val-required="Last name is super duper required" id="FirstName" name="FirstName" type="hidden" value="LastName">
+        <input length="9" data-val="true" data-val-required="Last name is super duper required" id="FirstName" name="FirstName" type="hidden" value="LastName">
 
-    <label for="AtendeeEmail">Atendee Email</label>
-    <input data-val="true" data-val-required="Email is required, we hope we won't need it, but in case we need to get in touch with you, we'd like to have it!" id="AtendeeEmail" name="AtendeeEmail" type="text" value="">
-    <span class="field-validation-valid" data-valmsg-for="AtendeeEmail" data-valmsg-replace="true"></span>
+        <label for="AtendeeEmail">Atendee Email</label>
+        <input data-val="true" data-val-required="Email is required, we hope we won't need it, but in case we need to get in touch with you, we'd like to have it!" id="AtendeeEmail" name="AtendeeEmail" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="AtendeeEmail" data-valmsg-replace="true"></span>
 
-    <label for="Attending">Attending</label>
-    <input data-val="true" data-val-required="Response is required" id="Attending" name="Attending" type="radio" value="True">
-    <span class="field-validation-valid" data-valmsg-for="Attending" data-valmsg-replace="true"></span>
+        <label for="Attending">Attending</label>
+        <input data-val="true" data-val-required="Response is required" id="Attending" name="Attending" type="radio" value="True">
+        <span class="field-validation-valid" data-valmsg-for="Attending" data-valmsg-replace="true"></span>
 
-    <label for="Attending">Not Attending</label>
-    <input checked="checked" id="Attending" name="Attending" type="radio" value="False">
-    <span class="field-validation-valid" data-valmsg-for="Attending" data-valmsg-replace="true"></span>
+        <label for="Attending">Not Attending</label>
+        <input checked="checked" id="Attending" name="Attending" type="radio" value="False">
+        <span class="field-validation-valid" data-valmsg-for="Attending" data-valmsg-replace="true"></span>
 
-    <label for="MealSelection">MealSelection</label>
-    <select data-val="true" data-val-required="Meal Selection is required" id="MealSelection" name="MealSelection">
-        <option value="Meal1">Meal1</option>
-        <option value="Meal2">Meal2</option>
-        <option value="Meal3">Meal3</option>
-    </select>
-    <span class="field-validation-valid" data-valmsg-for="MealSelection" data-valmsg-replace="true"></span>
+        <label for="MealSelection">MealSelection</label>
+        <select data-val="true" data-val-required="Meal Selection is required" id="MealSelection" name="MealSelection">
+            <option value="Meal1">Meal1</option>
+            <option value="Meal2">Meal2</option>
+            <option value="Meal3">Meal3</option>
+        </select>
+        <span class="field-validation-valid" data-valmsg-for="MealSelection" data-valmsg-replace="true"></span>
 
-    <label for="Notes">Notes</label>
-    <input id="Notes" name="Notes" type="text" value="">
+        <label for="Notes">Notes</label>
+        <input id="Notes" name="Notes" type="text" value="">
 
-    <label for="NeedParking">Need Parking?</label>
-    <input data-val="true" data-val-required="The Need Parking? field is required." id="NeedParking" name="NeedParking" type="checkbox" value="true">
-    <input name="NeedParking" type="hidden" value="false">
+        <label for="NeedParking">Need Parking?</label>
+        <input data-val="true" data-val-required="The Need Parking? field is required." id="NeedParking" name="NeedParking" type="checkbox" value="true">
+        <input name="NeedParking" type="hidden" value="false">
 
-    <input type="submit" />
-</form>*@
+        <input type="submit" />
+    </form>*@
 
 <script>
-    //var $ = jQuery
     $(document).ready(function () {
-        $.ajax({
-            url: '/api/GuestEvent/GetGuestsForEvent/1',
-            contentType: 'application/json',
-            method: 'GET',
-        }).done(function (data) {
-            console.log(data)
-            data.forEach(function (guest) {
-                console.log(guest.FirstName, guest.LastName)
-            })
-        }).fail(function (error) {
-            console.log(error)
-        })
+        //$.ajax({
+        //    url: '/api/GuestEvent/GetGuestsForEvent/1',
+        //    contentType: 'application/json',
+        //    method: 'GET',
+        //}).done(function (data) {
+        //    console.log(data)
+        //    data.forEach(function (guest) {
+        //        console.log(guest.FirstName, guest.LastName)
+        //    })
+        //}).fail(function (error) {
+        //    console.log(error)
+        //})
 
         $('#rsvp-form').submit(function (e) {
             e.preventDefault();
@@ -132,12 +140,12 @@
                     var $parentDiv = $('<div>').addClass('eventItem').attr('data-eventID', event.eventID);
                     $('<h2>').html(event.title).appendTo($parentDiv)
                     $('<h3>').html(event.subtitle).appendTo($parentDiv)
-                    $('<h4>').html(event.eventStartDate).appendTo($parentDiv)
+                    //$('<h4>').html(event.eventStartDate).appendTo($parentDiv)
                     $('<h5>').html(formatTime(event.eventStartTime) + " until " + formatTime(event.eventEndTime)).appendTo($parentDiv)
-                    $('<p>').html(event.description).appendTo($parentDiv)
-                    $('<h4>').html(event.venue).appendTo($parentDiv)
-                    $('<h5>').html(event.address).appendTo($parentDiv)
-                    $('<p>').html(event.details).appendTo($parentDiv)
+                   // $('<p>').html(event.description).appendTo($parentDiv)
+                    //$('<h4>').html(event.venue).appendTo($parentDiv)
+                    //$('<h5>').html(event.address).appendTo($parentDiv)
+                   // $('<p>').html(event.details).appendTo($parentDiv)
 
                     $('.events').append($parentDiv)
 
@@ -157,24 +165,24 @@
                     $('<span>').attr('class', "field-validation-valid").attr('data-valmsg-for', "AtendeeEmail").attr('data-valmsg-replace', "true")
 
 
-                       
+
                     $('<label>').attr('for', 'event' + event.eventID + 'Attending').html("Attending").append(
-                    $('<input>').attr({
-                        id: 'event' + event.eventID + 'Attending',
-                        name: "Attending",
-                        type: "radio",
-                        value: "True",
-                        "data-val-required": "Response is required",
-                    })).appendTo($replyForm)
+                        $('<input>').attr({
+                            id: 'event' + event.eventID + 'Attending',
+                            name: "Attending",
+                            type: "radio",
+                            value: "True",
+                            "data-val-required": "Response is required",
+                        })).appendTo($replyForm)
 
                     $('<label>').attr('for', 'event' + event.eventID + 'NotAttending').html("Not Attending").append(
-                    $('<input>').attr({
-                        id: 'event' + event.eventID + 'NotAttending',
-                        name: "Attending",
-                        type: "radio",
-                        value: "False",
-                        "data-val-required": "Response is required",
-                    })).appendTo($replyForm)
+                        $('<input>').attr({
+                            id: 'event' + event.eventID + 'NotAttending',
+                            name: "Attending",
+                            type: "radio",
+                            value: "False",
+                            "data-val-required": "Response is required",
+                        })).appendTo($replyForm)
                     $('<span>').attr('class', "field-validation-valid").attr('data-valmsg-for', "Attending").attr('data-valmsg-replace', "true")
 
                     //todo if guest is not child && meal is required by event
@@ -186,7 +194,8 @@
                     }).append($('<option>').attr('value', 'Meal1').html('Meal1')).append($('<option>').attr('value', 'Meal2').html('Meal2')).append($('<option>').attr('value', 'Meal3').html('Meal3')).appendTo($replyForm);
                     $('<span>').attr('class', "field-validation-valid").attr('data-valmsg-for', "MealSelection").attr('data-valmsg-replace', "true")
 
-                    $replyForm.appendTo('.events')
+                    $replyForm.appendTo('.events');
+
                 })
             }).fail(function (error) {
                 $('.events').html('');
