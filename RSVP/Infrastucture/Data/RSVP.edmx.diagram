@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e3340fb51c1845878f3fd19a086fc20d" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="RSVPModel.Event" Width="1.5" PointX="3" PointY="6.125" />
-        <EntityTypeShape EntityType="RSVPModel.Guest" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="RSVPModel.GuestEventJunction" Width="1.5" PointX="5.25" PointY="0.875" />
-        <EntityTypeShape EntityType="RSVPModel.GuestGroup" Width="1.5" PointX="0.75" PointY="1.25" />
-        <EntityTypeShape EntityType="RSVPModel.Reply" Width="1.5" PointX="3" PointY="10.125" />
+        <EntityTypeShape EntityType="RSVPModel.Event" Width="1.5" PointX="3" PointY="6.25" />
+        <EntityTypeShape EntityType="RSVPModel.Guest" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="RSVPModel.GuestEventJunction" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="RSVPModel.GuestGroup" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="RSVPModel.Reply" Width="1.5" PointX="3" PointY="10.25" />
         <AssociationConnector Association="RSVPModel.FK_GuestEventJunction_Events" />
         <AssociationConnector Association="RSVPModel.FK_Guest_GuestGroup" />
         <AssociationConnector Association="RSVPModel.FK_GuestEventJunction_Guest" />

@@ -52,11 +52,11 @@
             <PropertyRef Name="RepliesID" />
           </Key>
           <Property Name="RepliesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Attending" Type="bit" />
-          <Property Name="AtendeeEmail" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MealSelection" Type="varchar" MaxLength="100" />
-          <Property Name="Notes" Type="varchar" MaxLength="400" />
-          <Property Name="NeedParking" Type="bit" Nullable="false" />
+          <Property Name="Attending" Type="bit" Nullable="false" />
+          <Property Name="AtendeeEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="MealSelection" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="NeedParking" Type="bit" />
         </EntityType>
         <Association Name="FK_Guest_GuestGroup">
           <End Role="GuestGroup" Type="Self.GuestGroup" Multiplicity="0..1" />
@@ -181,9 +181,9 @@
           <Property Name="GuestGroupID" Type="Int32" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsChild" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GuestGroup" Relationship="RSVPModel.FK_Guest_GuestGroup" FromRole="Guest" ToRole="GuestGroup" />
           <NavigationProperty Name="GuestEventJunctions" Relationship="RSVPModel.FK_GuestEventJunction_Guest" FromRole="Guest" ToRole="GuestEventJunction" />
-          <Property Name="IsChild" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="GuestEventJunction">
           <Key>
@@ -210,12 +210,12 @@
             <PropertyRef Name="RepliesID" />
           </Key>
           <Property Name="RepliesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Attending" Type="Boolean" />
-          <Property Name="AtendeeEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MealSelection" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Notes" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Attending" Type="Boolean" Nullable="false" />
+          <Property Name="AtendeeEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MealSelection" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NeedParking" Type="Boolean" />
           <NavigationProperty Name="GuestEventJunctions" Relationship="RSVPModel.FK_GuestEventJunction_Replies" FromRole="Reply" ToRole="GuestEventJunction" />
-          <Property Name="NeedParking" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_GuestEventJunction_Events">
           <End Type="RSVPModel.Event" Role="Event" Multiplicity="1" />
@@ -269,8 +269,8 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RSVPModelStoreContainer" CdmEntityContainer="RSVPEntities">
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RSVPModelStoreContainer" CdmEntityContainer="RSVPEntities">
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="RSVPModel.Event">
               <MappingFragment StoreEntitySet="Events">
@@ -329,8 +329,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -344,7 +343,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
