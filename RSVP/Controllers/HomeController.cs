@@ -12,25 +12,10 @@ namespace RSVP.Controllers
 {
     public class HomeController : Controller
     {
+        #region Content
         public ActionResult Index()
         {
-            using (RSVPEntities db = new RSVPEntities())
-            {
-                //Event firstEvent = db.Events.FirstOrDefault(x => x.Details != null && x.Description != null);
-
-                List<Event> events = db.Events.ToList();
-                List<Guest> guests = db.Guests.ToList();
-                List<GuestEventJunction> guestEventJunctions = db.GuestEventJunctions.ToList();
-
-                EventViewModel viewModel = new EventViewModel()
-                {
-                    Events = events,
-                    Guests = guests,
-                    GuestEventJunctions = guestEventJunctions
-                };
-
-                return View(viewModel);
-            }
+            return View();
         }
 
         public ActionResult Details()
@@ -51,91 +36,70 @@ namespace RSVP.Controllers
         {
             return View();
         }
+        #endregion
 
+        #region Registration
         public ActionResult RSVP()
         {
-            InviteViewModel viewModel = new InviteViewModel();
+            AuthenticationViewModel viewModel = new AuthenticationViewModel();
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult GuestInvited(InviteViewModel model)
+        public ActionResult RSVP(AuthenticationViewModel viewModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
+                // Massage data
+                viewModel.FirstName = viewModel.FirstName.Trim();
+                viewModel.LastName = viewModel.LastName.Trim();
+
                 using (RSVPEntities db = new RSVPEntities())
                 {
-                    Guest guest = db.Guests.FirstOrDefault(x => x.FirstName == model.FirstName && x.LastName == model.LastName);
+                    // Try to find guest based on first/last names
+                    Guest guest = db.Guests.FirstOrDefault(x => x.FirstName == viewModel.FirstName && x.LastName == viewModel.LastName);
 
-                    if (guest != null)
+                    // If the guest can be found and they havent registered for any event then continue
+                    if (guest != null && guest.GuestEventJunctions.Count(x => x.RepliesID == null) > 0)
                     {
-                        //// Create the reply object
-                        //Reply mynewRSVP = new Reply();
-                        ////mynewRSVP.AtendeeEmail = model.AtendeeEmail;
-                        ////mynewRSVP.Attending = model.Attending;
-
-                        ////find guestID in the junction table
-                        //GuestEventJunction guestEventJunction = db.GuestEventJunctions.FirstOrDefault(x => x.GuestID == guest.GuestID);
-
-                        //// Insert the reply object in order to associate it to the dbContext (dbcontext is used to keep track of objects)
-                        //db.Replies.Add(mynewRSVP);
-
-                        ////save changes to db in order to access 
-                        //db.SaveChanges();
-
-                        //// Associate the guest to the reply
-                        //Reply reply = db.Replies.FirstOrDefault(x => x.RepliesID == mynewRSVP.RepliesID);
-                        //guestEventJunction.RepliesID = reply.RepliesID;
-
-                        //// Push changes to sql server via db.savechanges()
-                        //db.SaveChanges();
-                        //return;
+                        return RedirectToAction("Reserve", new { guestId = guest.GuestID });
                     }
-
                 }
             }
-            return View(model);
+            return View(viewModel);
+        }
+
+        public ActionResult Reserve(int guestId)
+        {
+            // Validation
+            if (guestId != 0)
+            {
+                return RedirectToAction("RSVP");
+            }
+
+            // Find configuration for this user
+            using (RSVPEntities db = new RSVPEntities())
+            {
+                Guest guest = db.Guests.FirstOrDefault(x => x.GuestID == guestId);
+                ReservationViewModel viewModel = new ReservationViewModel();
+
+                //viewModel.MealList = 
+                viewModel.EventList = guest.GuestEventJunctions.Select(x => x.Event).ToList().Select(x => x.Title).ToList();
+
+                return View(viewModel);
+            }
         }
 
         [HttpPost]
-        public ActionResult RSVP(InviteViewModel model)
+        public ActionResult Reserve(ReservationViewModel viewModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                using (RSVPEntities db = new RSVPEntities())
-                {
-                    Guest guest = db.Guests.FirstOrDefault(x => x.FirstName == model.FirstName && x.LastName == model.LastName);
-
-                    if (guest != null)
-                    {
-                        //// Create the reply object
-                        //Reply mynewRSVP = new Reply();
-                        ////mynewRSVP.AtendeeEmail = model.AtendeeEmail;
-                        ////mynewRSVP.Attending = model.Attending;
-
-                        ////find guestID in the junction table
-                        //GuestEventJunction guestEventJunction = db.GuestEventJunctions.FirstOrDefault(x => x.GuestID == guest.GuestID);
-
-                        //// Insert the reply object in order to associate it to the dbContext (dbcontext is used to keep track of objects)
-                        //db.Replies.Add(mynewRSVP);
-
-                        ////save changes to db in order to access 
-                        //db.SaveChanges();
-
-                        //// Associate the guest to the reply
-                        //Reply reply = db.Replies.FirstOrDefault(x => x.RepliesID == mynewRSVP.RepliesID);
-                        //guestEventJunction.RepliesID = reply.RepliesID;
-
-                        //// Push changes to sql server via db.savechanges()
-                        //db.SaveChanges();
-                        //return;
-                    }
-
-                }
-
+                //Return them to confirmation page
+                //return View();
             }
-
-            return View(model);
+            return View(viewModel);
         }
+        #endregion
     }
 }

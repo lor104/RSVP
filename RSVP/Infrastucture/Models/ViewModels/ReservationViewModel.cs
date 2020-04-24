@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace RSVP.Infrastucture.Models.ViewModels
 {
-    public class InviteViewModel
+    public class ReservationViewModel
     {
-        [Required(ErrorMessage = "First name is super duper required")]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        public string FullName { get; set; }
 
-        [Required(ErrorMessage = "Last name is super duper required")]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        public List<string> MealList { get; set; }
+
+        public List<string> EventList { get; set; }
 
         [Required(ErrorMessage = "Email is required, we hope we won't need it, but in case we need to get in touch with you, we'd like to have it!")]
         [Display(Name = "Atendee Email")]
@@ -24,9 +22,9 @@ namespace RSVP.Infrastucture.Models.ViewModels
         [Display(Name = "Attending")]
         public bool Attending { get; set; }
 
-        //[Required(ErrorMessage = "Meal Selection is required")]
-        [Display(Name = "MealSelection")]
-        public string MealSelection { get; set; }
+        [Required(ErrorMessage = "Meal Selection is required")]
+        [Display(Name = "Meal Selection")]
+        public int MealSelection { get; set; }
 
         [Display(Name = "Notes")]
         public string Notes { get; set; }

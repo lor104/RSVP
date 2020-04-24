@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="RSVPModel.Guest" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="RSVPModel.GuestEventJunction" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="RSVPModel.GuestGroup" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="RSVPModel.Reply" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="RSVPModel.Reply" Width="2.625" PointX="3" PointY="10.25" />
         <AssociationConnector Association="RSVPModel.FK_GuestEventJunction_Events" />
         <AssociationConnector Association="RSVPModel.FK_Guest_GuestGroup" />
         <AssociationConnector Association="RSVPModel.FK_GuestEventJunction_Guest" />

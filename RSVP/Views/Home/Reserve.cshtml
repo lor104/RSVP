@@ -1,0 +1,33 @@
+﻿@model RSVP.Infrastucture.Models.ViewModels.ReservationViewModel
+@{
+    ViewBag.Title = "RSVP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content rsvp">
+    <div class="page-title">
+        <h2>RSVP</h2>
+        <p class="italic">ceremony <span>&</span> reception</p>
+    </div>
+
+    @using (Html.BeginForm("Reserve", "Home", FormMethod.Post, new { id = "reservation-form" }))
+    {
+        @*<div class="form-input">
+            @Html.LabelFor(x => Model.FirstName)
+            @Html.TextBoxFor(x => Model.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => Model.FirstName)
+        </div>
+
+        <div class="form-input">
+            @Html.LabelFor(x => Model.LastName)
+            @Html.TextBoxFor(x => Model.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => Model.LastName)
+        </div>
+
+        <div class="form-input">
+            <input class="form-control" type="submit" value="Submit" />
+        </div>*@
+    }
+
+    <div class="events">
+    </div>
+</div>
