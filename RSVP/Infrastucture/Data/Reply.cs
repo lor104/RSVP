@@ -23,10 +23,11 @@ namespace RSVP.Infrastucture.Data
         public int RepliesID { get; set; }
         public bool Attending { get; set; }
         public string AtendeeEmail { get; set; }
-        public string MealSelection { get; set; }
+        public Nullable<int> MealId { get; set; }
         public string Notes { get; set; }
         public Nullable<bool> NeedParking { get; set; }
     
+        public virtual EventMeal EventMeal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GuestEventJunction> GuestEventJunctions { get; set; }
     }

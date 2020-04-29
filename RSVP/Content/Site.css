@@ -1,4 +1,7 @@
-﻿body {
+﻿.field-validation-error {
+  color: red; }
+
+body {
   min-height: 100vh;
   font-family: 'Crimson Text', serif; }
 
@@ -188,6 +191,17 @@ p {
       flex-direction: row;
       justify-content: center;
       align-items: end; }
+    .content.rsvp #reservation-form {
+      display: flex;
+      flex-direction: column;
+      text-align: center; }
+      @media (min-width: 900px) {
+        .content.rsvp #reservation-form {
+          padding-left: 20%;
+          padding-right: 20%; } }
+      .content.rsvp #reservation-form .event-group .event-group-line {
+        display: flex;
+        flex-direction: column; }
     .content.rsvp .events {
       text-align: center; }
     .content.rsvp .form-input {
@@ -212,6 +226,18 @@ p {
       border-style: solid;
       box-shadow: none;
       text-transform: lowercase; }
+
+.btn-group {
+  padding: 5px;
+  margin: auto;
+  background-color: #fbf3ea; }
+
+.btn {
+  font-style: italic;
+  font-weight: 600;
+  background-color: #fbf3ea; }
+  .btn.selected {
+    background-color: #dbd0bf; }
 
 label {
   font-weight: normal;

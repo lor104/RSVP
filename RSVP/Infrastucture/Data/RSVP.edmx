@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RSVPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EventMeals">
+          <Key>
+            <PropertyRef Name="MealId" />
+          </Key>
+          <Property Name="MealId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Events">
           <Key>
             <PropertyRef Name="EventID" />
@@ -40,13 +48,6 @@
           <Property Name="EventID" Type="int" Nullable="false" />
           <Property Name="RepliesID" Type="int" />
         </EntityType>
-        <EntityType Name="GuestGroup">
-          <Key>
-            <PropertyRef Name="GuestGroupID" />
-          </Key>
-          <Property Name="GuestGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GroupID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Replies">
           <Key>
             <PropertyRef Name="RepliesID" />
@@ -54,19 +55,19 @@
           <Property Name="RepliesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Attending" Type="bit" Nullable="false" />
           <Property Name="AtendeeEmail" Type="nvarchar" MaxLength="50" />
-          <Property Name="MealSelection" Type="nvarchar" MaxLength="100" />
+          <Property Name="MealId" Type="int" />
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="NeedParking" Type="bit" />
         </EntityType>
-        <Association Name="FK_Guest_GuestGroup">
-          <End Role="GuestGroup" Type="Self.GuestGroup" Multiplicity="0..1" />
-          <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+        <Association Name="FK_EventMeals_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="EventMeals" Type="Self.EventMeals" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="GuestGroup">
-              <PropertyRef Name="GuestGroupID" />
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
             </Principal>
-            <Dependent Role="Guest">
-              <PropertyRef Name="GuestGroupID" />
+            <Dependent Role="EventMeals">
+              <PropertyRef Name="EventId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -106,15 +107,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Replies_EventMeals">
+          <End Role="EventMeals" Type="Self.EventMeals" Multiplicity="0..1" />
+          <End Role="Replies" Type="Self.Replies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventMeals">
+              <PropertyRef Name="MealId" />
+            </Principal>
+            <Dependent Role="Replies">
+              <PropertyRef Name="MealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RSVPModelStoreContainer">
+          <EntitySet Name="EventMeals" EntityType="Self.EventMeals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GuestEventJunction" EntityType="Self.GuestEventJunction" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GuestGroup" EntityType="Self.GuestGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Replies" EntityType="Self.Replies" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Guest_GuestGroup" Association="Self.FK_Guest_GuestGroup">
-            <End Role="GuestGroup" EntitySet="GuestGroup" />
-            <End Role="Guest" EntitySet="Guest" />
+          <AssociationSet Name="FK_EventMeals_Events" Association="Self.FK_EventMeals_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventMeals" EntitySet="EventMeals" />
           </AssociationSet>
           <AssociationSet Name="FK_GuestEventJunction_Events" Association="Self.FK_GuestEventJunction_Events">
             <End Role="Events" EntitySet="Events" />
@@ -128,24 +141,32 @@
             <End Role="Replies" EntitySet="Replies" />
             <End Role="GuestEventJunction" EntitySet="GuestEventJunction" />
           </AssociationSet>
+          <AssociationSet Name="FK_Replies_EventMeals" Association="Self.FK_Replies_EventMeals">
+            <End Role="EventMeals" EntitySet="EventMeals" />
+            <End Role="Replies" EntitySet="Replies" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RSVPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RSVPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EventMeals" EntityType="RSVPModel.EventMeal" />
           <EntitySet Name="Events" EntityType="RSVPModel.Event" />
           <EntitySet Name="Guests" EntityType="RSVPModel.Guest" />
           <EntitySet Name="GuestEventJunctions" EntityType="RSVPModel.GuestEventJunction" />
-          <EntitySet Name="GuestGroups" EntityType="RSVPModel.GuestGroup" />
           <EntitySet Name="Replies" EntityType="RSVPModel.Reply" />
+          <AssociationSet Name="FK_EventMeals_Events" Association="RSVPModel.FK_EventMeals_Events">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="EventMeal" EntitySet="EventMeals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replies_EventMeals" Association="RSVPModel.FK_Replies_EventMeals">
+            <End Role="EventMeal" EntitySet="EventMeals" />
+            <End Role="Reply" EntitySet="Replies" />
+          </AssociationSet>
           <AssociationSet Name="FK_GuestEventJunction_Events" Association="RSVPModel.FK_GuestEventJunction_Events">
             <End Role="Event" EntitySet="Events" />
             <End Role="GuestEventJunction" EntitySet="GuestEventJunctions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Guest_GuestGroup" Association="RSVPModel.FK_Guest_GuestGroup">
-            <End Role="GuestGroup" EntitySet="GuestGroups" />
-            <End Role="Guest" EntitySet="Guests" />
           </AssociationSet>
           <AssociationSet Name="FK_GuestEventJunction_Guest" Association="RSVPModel.FK_GuestEventJunction_Guest">
             <End Role="Guest" EntitySet="Guests" />
@@ -156,6 +177,16 @@
             <End Role="GuestEventJunction" EntitySet="GuestEventJunctions" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="EventMeal">
+          <Key>
+            <PropertyRef Name="MealId" />
+          </Key>
+          <Property Name="MealId" Type="Int32" Nullable="false" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Event" Relationship="RSVPModel.FK_EventMeals_Events" FromRole="EventMeal" ToRole="Event" />
+          <NavigationProperty Name="Replies" Relationship="RSVPModel.FK_Replies_EventMeals" FromRole="EventMeal" ToRole="Reply" />
+        </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="EventID" />
@@ -171,6 +202,7 @@
           <Property Name="EventStartTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="EventEndTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Details" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EventMeals" Relationship="RSVPModel.FK_EventMeals_Events" FromRole="Event" ToRole="EventMeal" />
           <NavigationProperty Name="GuestEventJunctions" Relationship="RSVPModel.FK_GuestEventJunction_Events" FromRole="Event" ToRole="GuestEventJunction" />
         </EntityType>
         <EntityType Name="Guest">
@@ -182,7 +214,6 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsChild" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="GuestGroup" Relationship="RSVPModel.FK_Guest_GuestGroup" FromRole="Guest" ToRole="GuestGroup" />
           <NavigationProperty Name="GuestEventJunctions" Relationship="RSVPModel.FK_GuestEventJunction_Guest" FromRole="Guest" ToRole="GuestEventJunction" />
         </EntityType>
         <EntityType Name="GuestEventJunction">
@@ -197,14 +228,6 @@
           <NavigationProperty Name="Guest" Relationship="RSVPModel.FK_GuestEventJunction_Guest" FromRole="GuestEventJunction" ToRole="Guest" />
           <NavigationProperty Name="Reply" Relationship="RSVPModel.FK_GuestEventJunction_Replies" FromRole="GuestEventJunction" ToRole="Reply" />
         </EntityType>
-        <EntityType Name="GuestGroup">
-          <Key>
-            <PropertyRef Name="GuestGroupID" />
-          </Key>
-          <Property Name="GuestGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Guests" Relationship="RSVPModel.FK_Guest_GuestGroup" FromRole="GuestGroup" ToRole="Guest" />
-        </EntityType>
         <EntityType Name="Reply">
           <Key>
             <PropertyRef Name="RepliesID" />
@@ -212,11 +235,36 @@
           <Property Name="RepliesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Attending" Type="Boolean" Nullable="false" />
           <Property Name="AtendeeEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MealSelection" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MealId" Type="Int32" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NeedParking" Type="Boolean" />
+          <NavigationProperty Name="EventMeal" Relationship="RSVPModel.FK_Replies_EventMeals" FromRole="Reply" ToRole="EventMeal" />
           <NavigationProperty Name="GuestEventJunctions" Relationship="RSVPModel.FK_GuestEventJunction_Replies" FromRole="Reply" ToRole="GuestEventJunction" />
         </EntityType>
+        <Association Name="FK_EventMeals_Events">
+          <End Type="RSVPModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="RSVPModel.EventMeal" Role="EventMeal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventMeal">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replies_EventMeals">
+          <End Type="RSVPModel.EventMeal" Role="EventMeal" Multiplicity="0..1" />
+          <End Type="RSVPModel.Reply" Role="Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventMeal">
+              <PropertyRef Name="MealId" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="MealId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GuestEventJunction_Events">
           <End Type="RSVPModel.Event" Role="Event" Multiplicity="1" />
           <End Type="RSVPModel.GuestEventJunction" Role="GuestEventJunction" Multiplicity="*" />
@@ -226,18 +274,6 @@
             </Principal>
             <Dependent Role="GuestEventJunction">
               <PropertyRef Name="EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Guest_GuestGroup">
-          <End Type="RSVPModel.GuestGroup" Role="GuestGroup" Multiplicity="0..1" />
-          <End Type="RSVPModel.Guest" Role="Guest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GuestGroup">
-              <PropertyRef Name="GuestGroupID" />
-            </Principal>
-            <Dependent Role="Guest">
-              <PropertyRef Name="GuestGroupID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -271,6 +307,15 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="RSVPModelStoreContainer" CdmEntityContainer="RSVPEntities">
+          <EntitySetMapping Name="EventMeals">
+            <EntityTypeMapping TypeName="RSVPModel.EventMeal">
+              <MappingFragment StoreEntitySet="EventMeals">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="MealId" ColumnName="MealId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="RSVPModel.Event">
               <MappingFragment StoreEntitySet="Events">
@@ -308,20 +353,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GuestGroups">
-            <EntityTypeMapping TypeName="RSVPModel.GuestGroup">
-              <MappingFragment StoreEntitySet="GuestGroup">
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="GuestGroupID" ColumnName="GuestGroupID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Replies">
             <EntityTypeMapping TypeName="RSVPModel.Reply">
               <MappingFragment StoreEntitySet="Replies">
                 <ScalarProperty Name="NeedParking" ColumnName="NeedParking" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="MealSelection" ColumnName="MealSelection" />
+                <ScalarProperty Name="MealId" ColumnName="MealId" />
                 <ScalarProperty Name="AtendeeEmail" ColumnName="AtendeeEmail" />
                 <ScalarProperty Name="Attending" ColumnName="Attending" />
                 <ScalarProperty Name="RepliesID" ColumnName="RepliesID" />

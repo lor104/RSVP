@@ -26,7 +26,6 @@ namespace RSVP.Infrastucture.Data
         public string LastName { get; set; }
         public bool IsChild { get; set; }
     
-        public virtual GuestGroup GuestGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GuestEventJunction> GuestEventJunctions { get; set; }
     }

@@ -4,30 +4,104 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="content rsvp">
-    <div class="page-title">
-        <h2>RSVP</h2>
-        <p class="italic">ceremony <span>&</span> reception</p>
-    </div>
-
     @using (Html.BeginForm("Reserve", "Home", FormMethod.Post, new { id = "reservation-form" }))
     {
-        @*<div class="form-input">
-            @Html.LabelFor(x => Model.FirstName)
-            @Html.TextBoxFor(x => Model.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => Model.FirstName)
+        @Html.HiddenFor(x => x.GuestId)
+        <div class="page-title">
+            <h2></h2>
+            <p class="italic">Welcome @Model.FullName</p>
         </div>
 
         <div class="form-input">
-            @Html.LabelFor(x => Model.LastName)
-            @Html.TextBoxFor(x => Model.LastName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => Model.LastName)
+            @Html.LabelFor(x => Model.AttendeeEmail)
+            @Html.TextBoxFor(x => Model.AttendeeEmail, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => Model.AttendeeEmail)
         </div>
 
+        <!-- Most validation will be handled on the backend -->
+        for (int i = 0; i < Model.ReplyList.Count; i++)
+        {
+            <div class="event-group" eventId="@Model.ReplyList[i].Event.EventID">
+                <div class="page-title">
+                    <p class="italic">@Model.ReplyList[i].Event.Subtitle</p>
+                </div>
+                <div class="event-group-line event-attending">
+                    <div>
+                        <p class="">Will you be joining us on @Model.ReplyList[i].Event.EventStartDate, at @Model.ReplyList[i].Event.Venue, for @Model.ReplyList[i].Event.Subtitle</p>
+                    </div>
+                    @Html.HiddenFor(x => Model.ReplyList[i].Attending)
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-accept">joyfully accept</button>
+                        <button type="button" class="btn btn-sm btn-decline">regretfully decline</button>
+                    </div>
+                    @Html.ValidationMessageFor(x => Model.ReplyList[i].Attending)
+                </div>
+                <div class="event-group-line event-meal">
+                    @Html.LabelFor(x => Model.ReplyList[i].SelectedMeal)
+                    @Html.HiddenFor(x => Model.ReplyList[i].SelectedMeal)
+                    <div class="btn-group">
+                        @for (int e = 0; e < Model.ReplyList[i].EventMeals.Count; e++)
+                        {
+                            var meal = @Model.ReplyList[i].EventMeals[e];
+                            <button type="button" mealId="@meal.MealId" class="btn btn-sm btn-meal">@meal.Name</button>
+                        }
+                    </div>
+                    @Html.ValidationMessageFor(x => Model.ReplyList[i].SelectedMeal)
+                </div>
+                <div class="event-group-line event-notes">
+                    @Html.LabelFor(x => Model.ReplyList[i].Notes)
+                    @Html.TextAreaFor(x => Model.ReplyList[i].Notes)
+                </div>
+            </div>
+        }
         <div class="form-input">
             <input class="form-control" type="submit" value="Submit" />
-        </div>*@
+        </div>
     }
 
     <div class="events">
     </div>
 </div>
+
+@section scripts {
+    <script>
+        $(function () {
+            // ********************** Register events **********************
+            $(".btn-accept").on("click", accept);
+            $(".btn-decline").on("click", decline);
+            $(".btn-meal").on("click", selectMeal);
+
+            // ********************** Button functions **********************
+            // Attending buttons
+            function accept() {
+                $btn = $(this);
+                findHidden($btn).val('True');
+                setSelected($btn);
+            }
+
+            function decline() {
+                $btn = $(this);
+                findHidden($btn).val('False');
+                setSelected($btn);
+            }
+
+            function setSelected($btn) {
+                $btn.siblings().removeClass('selected');
+                $btn.addClass('selected');
+            }
+
+            // Meal buttons
+            function selectMeal() {
+                $btn = $(this);
+                findHidden($btn).val($btn.attr('mealid'));
+                setSelected($btn);
+            }
+
+            // ********************** Utility **********************
+            // Find's the hidden field associated to input buttons.
+            function findHidden($btn) {
+                return $btn.parent().siblings("input[type='hidden']");
+            }
+        });
+    </script>
+}

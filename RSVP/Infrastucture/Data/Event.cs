@@ -17,6 +17,7 @@ namespace RSVP.Infrastucture.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Event()
         {
+            this.EventMeals = new HashSet<EventMeal>();
             this.GuestEventJunctions = new HashSet<GuestEventJunction>();
         }
     
@@ -32,6 +33,8 @@ namespace RSVP.Infrastucture.Data
         public System.TimeSpan EventEndTime { get; set; }
         public string Details { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EventMeal> EventMeals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GuestEventJunction> GuestEventJunctions { get; set; }
     }

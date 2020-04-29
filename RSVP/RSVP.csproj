@@ -170,13 +170,13 @@
     <Compile Include="Infrastucture\Data\Event.cs">
       <DependentUpon>RSVP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Infrastucture\Data\EventMeal.cs">
+      <DependentUpon>RSVP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastucture\Data\Guest.cs">
       <DependentUpon>RSVP.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastucture\Data\GuestEventJunction.cs">
-      <DependentUpon>RSVP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Infrastucture\Data\GuestGroup.cs">
       <DependentUpon>RSVP.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastucture\Data\Reply.cs">
@@ -283,7 +283,8 @@
     <Content Include="Web.Prod.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\Home\Reserve.cshtml" />
+    <Content Include="Views\Home\Confirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,18 +12,20 @@ namespace RSVP.Infrastucture.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class GuestGroup
+    public partial class EventMeal
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GuestGroup()
+        public EventMeal()
         {
-            this.Guests = new HashSet<Guest>();
+            this.Replies = new HashSet<Reply>();
         }
     
-        public int GuestGroupID { get; set; }
-        public int GroupID { get; set; }
+        public int MealId { get; set; }
+        public int EventId { get; set; }
+        public string Name { get; set; }
     
+        public virtual Event Event { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Guest> Guests { get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }

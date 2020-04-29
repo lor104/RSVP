@@ -25,10 +25,10 @@ namespace RSVP.Infrastucture.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<EventMeal> EventMeals { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<Guest> Guests { get; set; }
         public virtual DbSet<GuestEventJunction> GuestEventJunctions { get; set; }
-        public virtual DbSet<GuestGroup> GuestGroups { get; set; }
         public virtual DbSet<Reply> Replies { get; set; }
     }
 }

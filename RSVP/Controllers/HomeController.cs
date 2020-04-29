@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using RSVP.Infrastucture.Data;
 using RSVP.Infrastucture.Models.ViewModels;
 using RSVP.Infrastucture.Models;
+using System.Data.SqlTypes;
 
 namespace RSVP.Controllers
 {
@@ -63,16 +64,19 @@ namespace RSVP.Controllers
                     if (guest != null && guest.GuestEventJunctions.Count(x => x.RepliesID == null) > 0)
                     {
                         return RedirectToAction("Reserve", new { guestId = guest.GuestID });
+                    } else
+                    {
+                        //ModelState.AddModelError();
                     }
                 }
             }
             return View(viewModel);
         }
 
-        public ActionResult Reserve(int guestId)
+        public ActionResult Reserve(int? guestId)
         {
             // Validation
-            if (guestId != 0)
+            if (!guestId.HasValue || guestId == 0)
             {
                 return RedirectToAction("RSVP");
             }
@@ -82,9 +86,13 @@ namespace RSVP.Controllers
             {
                 Guest guest = db.Guests.FirstOrDefault(x => x.GuestID == guestId);
                 ReservationViewModel viewModel = new ReservationViewModel();
-
-                //viewModel.MealList = 
-                viewModel.EventList = guest.GuestEventJunctions.Select(x => x.Event).ToList().Select(x => x.Title).ToList();
+                viewModel.FullName = guest.FirstName?.Trim() + " " + guest.LastName?.Trim();
+                viewModel.ReplyList = guest.GuestEventJunctions.Select(x => x.Event).Select(x => new ReplyViewModel()
+                {
+                    Attending = null,
+                    Event = x,
+                    EventMeals = x.EventMeals.ToList()
+                }).ToList();
 
                 return View(viewModel);
             }
@@ -95,10 +103,67 @@ namespace RSVP.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Return them to confirmation page
-                //return View();
+                // Start validating submissions if accept or decline is clicked
+                for (int i = 0; i < viewModel.ReplyList.Count; i++)
+                {
+                    if (viewModel.ReplyList[i].Attending.Value == true)
+                    {
+                        // Add errors for empty meals
+                        if (!viewModel.ReplyList[i].SelectedMeal.HasValue)
+                        {
+                            ModelState.AddModelError("ReplyList[" + i + "].SelectedMeal", "Please select a meal!");
+                        }
+                    }
+                }
+
+                // Check if ModelState is valid once more after custom validation
+                if (ModelState.IsValid)
+                {
+                    // Massage data
+                    viewModel.AttendeeEmail = viewModel.AttendeeEmail.Trim();
+
+                    // Begin reply insertions
+                    using (RSVPEntities db = new RSVPEntities())
+                    {
+                        // Create each reply
+                        foreach (var reply in viewModel.ReplyList)
+                        {
+                            Reply newReply = new Reply();
+                            newReply.AtendeeEmail = viewModel.AttendeeEmail;
+                            newReply.Attending = reply.Attending.Value;
+
+                            // If user is attending this event then add the rest
+                            if (reply.Attending.Value == true)
+                            {
+                                newReply.MealId = reply.SelectedMeal;
+                                newReply.Notes = reply.Notes;
+                                newReply.NeedParking = reply.NeedParking;
+                            }
+                            db.Replies.Add(newReply);
+                        }
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("Confirmation");
+                }
             }
+
+            // If there are any errors then recreate lists and return to page
+            using (RSVPEntities db = new RSVPEntities())
+            {
+                Guest guest = db.Guests.FirstOrDefault(x => x.GuestID == viewModel.GuestId);
+                viewModel.ReplyList = guest.GuestEventJunctions.Select(x => x.Event).Select(x => new ReplyViewModel()
+                {
+                    Event = x,
+                    EventMeals = x.EventMeals.ToList()
+                }).ToList();
+            }
+
             return View(viewModel);
+        }
+
+        public ActionResult Confirmation()
+        {
+            return View();
         }
         #endregion
     }
