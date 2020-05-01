@@ -60,13 +60,17 @@ namespace RSVP.Controllers
                     // Try to find guest based on first/last names
                     Guest guest = db.Guests.FirstOrDefault(x => x.FirstName == viewModel.FirstName && x.LastName == viewModel.LastName);
 
-                    // If the guest can be found and they havent registered for any event then continue
-                    if (guest != null && guest.GuestEventJunctions.Count(x => x.RepliesID == null) > 0)
+                    if (guest == null)
+                    {
+                        ModelState.AddModelError("NotFound", "Sorry, we couldn't find you on the guest list.");
+                    }
+                    else if (guest.GuestEventJunctions.Count(x => x.RepliesID == null) > 0)
                     {
                         return RedirectToAction("Reserve", new { guestId = guest.GuestID });
-                    } else
+                    }
+                    else
                     {
-                        //ModelState.AddModelError();
+                        ModelState.AddModelError("Completed", "RSVP process already completed, thank you!");
                     }
                 }
             }
@@ -76,21 +80,30 @@ namespace RSVP.Controllers
         public ActionResult Reserve(int? guestId)
         {
             // Validation
+            string redirect = "RSVP";
+
             if (!guestId.HasValue || guestId == 0)
             {
-                return RedirectToAction("RSVP");
+                return RedirectToAction(redirect);
             }
 
             // Find configuration for this user
             using (RSVPEntities db = new RSVPEntities())
             {
                 Guest guest = db.Guests.FirstOrDefault(x => x.GuestID == guestId);
+
+                // Redirect if user already has completed form previously
+                if (guest.GuestEventJunctions.Count(x => x.RepliesID == null) == 0)
+                {
+                    return RedirectToAction(redirect);
+                }
+
                 ReservationViewModel viewModel = new ReservationViewModel();
                 viewModel.FullName = guest.FirstName?.Trim() + " " + guest.LastName?.Trim();
                 viewModel.ReplyList = guest.GuestEventJunctions.Select(x => x.Event).Select(x => new ReplyViewModel()
                 {
                     Attending = null,
-                    Event = x,
+                    Event = new EventViewModel(x),
                     EventMeals = x.EventMeals.ToList()
                 }).ToList();
 
@@ -125,11 +138,14 @@ namespace RSVP.Controllers
                     // Begin reply insertions
                     using (RSVPEntities db = new RSVPEntities())
                     {
+                        Guest guest = db.Guests.FirstOrDefault(x => x.GuestID == viewModel.GuestId);
+
                         // Create each reply
                         foreach (var reply in viewModel.ReplyList)
                         {
                             Reply newReply = new Reply();
-                            newReply.AtendeeEmail = viewModel.AttendeeEmail;
+
+                            newReply.AttendeeEmail = viewModel.AttendeeEmail;
                             newReply.Attending = reply.Attending.Value;
 
                             // If user is attending this event then add the rest
@@ -137,25 +153,31 @@ namespace RSVP.Controllers
                             {
                                 newReply.MealId = reply.SelectedMeal;
                                 newReply.Notes = reply.Notes;
-                                newReply.NeedParking = reply.NeedParking;
+                                newReply.LicensePlate = reply.LicensePlate;
                             }
+
                             db.Replies.Add(newReply);
+                            db.SaveChanges();
+                            guest.GuestEventJunctions.FirstOrDefault(x => x.GuestID == viewModel.GuestId && x.EventID == reply.Event.EventId).RepliesID = newReply.RepliesID;
+                            db.SaveChanges();
                         }
-                        db.SaveChanges();
                     }
                     return RedirectToAction("Confirmation");
                 }
             }
 
-            // If there are any errors then recreate lists and return to page
+            // If there are any errors then repopulate model and send back
             using (RSVPEntities db = new RSVPEntities())
             {
                 Guest guest = db.Guests.FirstOrDefault(x => x.GuestID == viewModel.GuestId);
-                viewModel.ReplyList = guest.GuestEventJunctions.Select(x => x.Event).Select(x => new ReplyViewModel()
+                viewModel.FullName = guest.FirstName?.Trim() + " " + guest.LastName?.Trim();
+                for (int i = 0; i < viewModel.ReplyList.Count; i++)
                 {
-                    Event = x,
-                    EventMeals = x.EventMeals.ToList()
-                }).ToList();
+                    int eventId = viewModel.ReplyList[i].Event.EventId;
+                    Event currentEvent = db.Events.FirstOrDefault(x => x.EventID == eventId);
+                    viewModel.ReplyList[i].Event = new EventViewModel(currentEvent);
+                    viewModel.ReplyList[i].EventMeals = currentEvent.EventMeals.ToList();
+                }
             }
 
             return View(viewModel);

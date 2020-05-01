@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="MealId" />
           </Key>
-          <Property Name="MealId" Type="int" Nullable="false" />
+          <Property Name="MealId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -54,10 +54,10 @@
           </Key>
           <Property Name="RepliesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Attending" Type="bit" Nullable="false" />
-          <Property Name="AtendeeEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="AttendeeEmail" Type="nvarchar" MaxLength="50" />
           <Property Name="MealId" Type="int" />
           <Property Name="Notes" Type="nvarchar(max)" />
-          <Property Name="NeedParking" Type="bit" />
+          <Property Name="LicensePlate" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_EventMeals_Events">
           <End Role="Events" Type="Self.Events" Multiplicity="1" />
@@ -181,7 +181,7 @@
           <Key>
             <PropertyRef Name="MealId" />
           </Key>
-          <Property Name="MealId" Type="Int32" Nullable="false" />
+          <Property Name="MealId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Event" Relationship="RSVPModel.FK_EventMeals_Events" FromRole="EventMeal" ToRole="Event" />
@@ -234,10 +234,10 @@
           </Key>
           <Property Name="RepliesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Attending" Type="Boolean" Nullable="false" />
-          <Property Name="AtendeeEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AttendeeEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MealId" Type="Int32" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NeedParking" Type="Boolean" />
+          <Property Name="LicensePlate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EventMeal" Relationship="RSVPModel.FK_Replies_EventMeals" FromRole="Reply" ToRole="EventMeal" />
           <NavigationProperty Name="GuestEventJunctions" Relationship="RSVPModel.FK_GuestEventJunction_Replies" FromRole="Reply" ToRole="GuestEventJunction" />
         </EntityType>
@@ -356,10 +356,10 @@
           <EntitySetMapping Name="Replies">
             <EntityTypeMapping TypeName="RSVPModel.Reply">
               <MappingFragment StoreEntitySet="Replies">
-                <ScalarProperty Name="NeedParking" ColumnName="NeedParking" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="MealId" ColumnName="MealId" />
-                <ScalarProperty Name="AtendeeEmail" ColumnName="AtendeeEmail" />
+                <ScalarProperty Name="AttendeeEmail" ColumnName="AttendeeEmail" />
                 <ScalarProperty Name="Attending" ColumnName="Attending" />
                 <ScalarProperty Name="RepliesID" ColumnName="RepliesID" />
               </MappingFragment>

@@ -201,7 +201,6 @@
     <Compile Include="Infrastucture\Models\DTOs\EventDTO.cs" />
     <Compile Include="Infrastucture\Models\DTOs\GuestEventDTO.cs" />
     <Compile Include="Infrastucture\Models\ViewModels\AuthenticationViewModel.cs" />
-    <Compile Include="Infrastucture\Models\ViewModels\EventViewModel.cs" />
     <Compile Include="Infrastucture\Models\ViewModels\ReservationViewModel.cs" />
     <Compile Include="Infrastucture\Models\ViewModels\RespondViewModel.cs" />
     <Compile Include="Infrastucture\Utility\Utility.cs" />

@@ -19,7 +19,7 @@ $btn-background-selected: #dbd0bf;
     font-family: 'Libre Baskerville', serif;
 }
 
-.field-validation-error {
+.field-validation-error, .validation-summary-errors {
     color: red;
 }
 
@@ -309,9 +309,17 @@ p {
 
         #rsvp-form {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: end;
+            align-items: center;
+            flex-direction: column;
+
+            .horizontal-flex-box {
+                display: flex;
+                flex-direction: row;
+
+                div {
+                    margin-top: auto;
+                }
+            }
         }
 
         #reservation-form {
@@ -320,8 +328,8 @@ p {
             text-align: center;
 
             @media (min-width:900px) {
-                padding-left: 20%;
-                padding-right: 20%;
+                padding-left: 30%;
+                padding-right: 30%;
             }
 
             .event-group {
@@ -340,7 +348,7 @@ p {
             margin: 0 5px;
         }
 
-        input {
+        input, textarea {
             border-radius: 0;
             border-style: solid;
             border-color: $input-border;

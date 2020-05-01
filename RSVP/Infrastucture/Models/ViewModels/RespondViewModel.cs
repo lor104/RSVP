@@ -17,8 +17,8 @@ namespace RSVP.Infrastucture.Models.ViewModels
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
-        [Display(Name = "Atendee Email")]
-        public string AtendeeEmail { get; set; }
+        [Display(Name = "Attendee Email")]
+        public string AttendeeEmail { get; set; }
 
         [Required(ErrorMessage = "Response is required")]
         [Display(Name = "Attending")]

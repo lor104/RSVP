@@ -50,10 +50,10 @@
     <EntitySetMapping Name="Replies">
       <EntityTypeMapping TypeName="RSVPModel.Reply">
         <MappingFragment StoreEntitySet="Replies">
-          <ScalarProperty Name="NeedParking" ColumnName="NeedParking" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
           <ScalarProperty Name="Notes" ColumnName="Notes" />
           <ScalarProperty Name="MealId" ColumnName="MealId" />
-          <ScalarProperty Name="AtendeeEmail" ColumnName="AtendeeEmail" />
+          <ScalarProperty Name="AttendeeEmail" ColumnName="AttendeeEmail" />
           <ScalarProperty Name="Attending" ColumnName="Attending" />
           <ScalarProperty Name="RepliesID" ColumnName="RepliesID" />
         </MappingFragment>

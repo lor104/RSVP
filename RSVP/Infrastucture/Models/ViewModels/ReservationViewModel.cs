@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using RSVP.Infrastucture.Data;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RSVP.Infrastucture.Models.ViewModels
 {
@@ -24,7 +25,7 @@ namespace RSVP.Infrastucture.Models.ViewModels
 
     public class ReplyViewModel
     {
-        public Event Event { get; set; }
+        public EventViewModel Event { get; set; }
 
         public List<EventMeal> EventMeals { get; set; }
 
@@ -37,7 +38,29 @@ namespace RSVP.Infrastucture.Models.ViewModels
         [Display(Name = "Do you have any dietary restrictions?")]
         public string Notes { get; set; }
 
-        [Display(Name = "Need Parking?")]
-        public bool NeedParking { get; set; }
+        public string LicensePlate { get; set; }
+    }
+
+    public class EventViewModel
+    {
+        public EventViewModel(Event eventData)
+        {
+            EventId = eventData.EventID;
+            StartDate = eventData.EventStartDate;
+            Title = eventData.Title;
+            Subtitle = eventData.Subtitle;
+            Venue = eventData.Venue;
+        }
+
+        public EventViewModel()
+        {
+
+        }
+
+        public int EventId { get; set; }
+        public DateTime StartDate { get; set; }
+        public string Title { get; set; }
+        public string Subtitle { get; set; }
+        public string Venue { get; set; }
     }
 }
