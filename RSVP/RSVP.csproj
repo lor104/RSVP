@@ -197,6 +197,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RSVP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Infrastucture\Helpers\CookieHelper.cs" />
+    <Compile Include="Infrastucture\Helpers\EncryptionHelper.cs" />
     <Compile Include="Infrastucture\Models\DTOs\GuestDTO.cs" />
     <Compile Include="Infrastucture\Models\DTOs\EventDTO.cs" />
     <Compile Include="Infrastucture\Models\DTOs\GuestEventDTO.cs" />

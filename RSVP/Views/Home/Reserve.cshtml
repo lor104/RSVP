@@ -6,10 +6,9 @@
 <div class="content rsvp">
     @using (Html.BeginForm("Reserve", "Home", FormMethod.Post, new { id = "reservation-form" }))
     {
-        @Html.HiddenFor(x => x.GuestId)
+        @Html.HiddenFor(x => x.Guest.GuestId)
         <div class="page-title">
-            <h2></h2>
-            <p class="italic">Welcome, @Model.FullName</p>
+            <h2>Welcome, @Model.Guest.FullName</h2>
         </div>
 
         <div class="form-input">
@@ -53,7 +52,7 @@
                     @Html.LabelFor(x => Model.ReplyList[i].Notes)
                     @Html.TextAreaFor(x => Model.ReplyList[i].Notes)
                 </div>
-                @if (Model.ReplyList[i].Event.Title == "Ceremony")
+                @if (Model.ReplyList[i].Event.Title == "Ceremony" && !Model.Guest.IsChild)
                 {
                     <div class="event-group-line event-parking">
                         <label>Will you be needing parking at @Model.ReplyList[i].Event.Venue? If so, please fill in your license plate below so we can have it prepaid for you.</label>
@@ -62,13 +61,34 @@
                 }
             </div>
         }
+        if (Model.Guest.CanBringGuest)
+        {
+            <div class="event-group">
+                <div class="event-group-line event-guest">
+                    <label>Will you be bringing a guest?</label>
+                    @Html.HiddenFor(x => Model.IsBringingGuest)
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-yes @(Model.IsBringingGuest.HasValue && Model.IsBringingGuest.Value == true ? "selected" : "")">yes</button>
+                        <button type="button" class="btn btn-sm btn-no @(Model.IsBringingGuest.HasValue && Model.IsBringingGuest.Value != true ? "selected" : "")">no</button>
+                    </div>
+                    @Html.ValidationMessageFor(x => Model.IsBringingGuest)
+                </div>
+                <div class="event-group-line event-guest-info">
+                    <div class="form-input">
+                        @Html.LabelFor(x => Model.GuestFirstName)
+                        @Html.TextBoxFor(x => Model.GuestFirstName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-input">
+                        @Html.LabelFor(x => Model.GuestLastName)
+                        @Html.TextBoxFor(x => Model.GuestLastName, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        }
         <div class="form-input">
             <input class="form-control" type="submit" value="Submit" />
         </div>
     }
-
-    <div class="events">
-    </div>
 </div>
 
 @section scripts {
@@ -84,12 +104,26 @@
                 $(".btn-decline.selected").each(function (k, v) {
                     decline($(v));
                 });
+
+                $yesBtn = $(".btn-yes.selected").length ? $(".btn-yes.selected") : null;
+                $noBtn = $(".btn-no.selected").length ? $(".btn-no.selected") : null;
+
+                if ($yesBtn) {
+                    yes($yesBtn);
+                }
+                else if ($noBtn) {
+                    no($noBtn);
+                } else {
+                    showHideGuestInfo($(".btn-no"), false);
+                }
             }
 
             // ********************** Register events **********************
             $(".btn-accept").on("click", accept);
             $(".btn-decline").on("click", decline);
             $(".btn-meal").on("click", selectMeal);
+            $(".btn-yes").on("click", yes);
+            $(".btn-no").on("click", no);
 
 
             // ********************** Button functions **********************
@@ -119,6 +153,31 @@
                 showHideDeclinedEvent($btn, false);
             }
 
+            function yes($yesBtn) {
+                let $btn = null;
+                if ($yesBtn instanceof jQuery.Event) {
+                    $btn = $(this)
+                }
+                else {
+                    $btn = $yesBtn;
+                }
+                findHidden($btn).val('True');
+                setSelected($btn);
+                showHideGuestInfo($btn, true);
+            }
+
+            function no($noBtn) {
+                let $btn = null;
+                if ($noBtn instanceof jQuery.Event) {
+                    $btn = $(this)
+                } else {
+                    $btn = $noBtn;
+                }
+                findHidden($btn).val('False');
+                setSelected($btn);
+                showHideGuestInfo($btn, false);
+            }
+
             function showHideDeclinedEvent($attendBtn, show) {
                 let $parent = $attendBtn.parents(".event-attending");
                 if (show) {
@@ -129,6 +188,15 @@
                     $parent.siblings(".event-meal").slideUp();
                     $parent.siblings(".event-notes").slideUp();
                     $parent.siblings(".event-parking").slideUp();
+                }
+            }
+
+            function showHideGuestInfo($attendBtn, show) {
+                let $parent = $attendBtn.parent().parent();
+                if (show) {
+                    $parent.siblings(".event-guest-info").slideDown();
+                } else {
+                    $parent.siblings(".event-guest-info").slideUp();
                 }
             }
 

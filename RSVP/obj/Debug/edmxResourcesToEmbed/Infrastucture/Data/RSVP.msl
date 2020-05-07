@@ -5,6 +5,7 @@
       <EntityTypeMapping TypeName="RSVPModel.EventMeal">
         <MappingFragment StoreEntitySet="EventMeals">
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsChild" ColumnName="IsChild" />
           <ScalarProperty Name="EventId" ColumnName="EventId" />
           <ScalarProperty Name="MealId" ColumnName="MealId" />
         </MappingFragment>
@@ -30,6 +31,8 @@
     <EntitySetMapping Name="Guests">
       <EntityTypeMapping TypeName="RSVPModel.Guest">
         <MappingFragment StoreEntitySet="Guest">
+          <ScalarProperty Name="ReferenceGuestID" ColumnName="ReferenceGuestID" />
+          <ScalarProperty Name="CanBringGuest" ColumnName="CanBringGuest" />
           <ScalarProperty Name="IsChild" ColumnName="IsChild" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />

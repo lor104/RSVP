@@ -11,6 +11,7 @@
           </Key>
           <Property Name="MealId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="IsChild" Type="bit" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Events">
@@ -38,6 +39,8 @@
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IsChild" Type="bit" Nullable="false" />
+          <Property Name="CanBringGuest" Type="bit" Nullable="false" />
+          <Property Name="ReferenceGuestID" Type="int" />
         </EntityType>
         <EntityType Name="GuestEventJunction">
           <Key>
@@ -68,6 +71,18 @@
             </Principal>
             <Dependent Role="EventMeals">
               <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guest_Guest">
+          <End Role="Guest" Type="Self.Guest" Multiplicity="0..1" />
+          <End Role="Guest1" Type="Self.Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="Guest1">
+              <PropertyRef Name="ReferenceGuestID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -129,6 +144,10 @@
             <End Role="Events" EntitySet="Events" />
             <End Role="EventMeals" EntitySet="EventMeals" />
           </AssociationSet>
+          <AssociationSet Name="FK_Guest_Guest" Association="Self.FK_Guest_Guest">
+            <End Role="Guest" EntitySet="Guest" />
+            <End Role="Guest1" EntitySet="Guest" />
+          </AssociationSet>
           <AssociationSet Name="FK_GuestEventJunction_Events" Association="Self.FK_GuestEventJunction_Events">
             <End Role="Events" EntitySet="Events" />
             <End Role="GuestEventJunction" EntitySet="GuestEventJunction" />
@@ -168,6 +187,10 @@
             <End Role="Event" EntitySet="Events" />
             <End Role="GuestEventJunction" EntitySet="GuestEventJunctions" />
           </AssociationSet>
+          <AssociationSet Name="FK_Guest_Guest" Association="RSVPModel.FK_Guest_Guest">
+            <End Role="Guest" EntitySet="Guests" />
+            <End Role="Guest1" EntitySet="Guests" />
+          </AssociationSet>
           <AssociationSet Name="FK_GuestEventJunction_Guest" Association="RSVPModel.FK_GuestEventJunction_Guest">
             <End Role="Guest" EntitySet="Guests" />
             <End Role="GuestEventJunction" EntitySet="GuestEventJunctions" />
@@ -183,6 +206,7 @@
           </Key>
           <Property Name="MealId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="IsChild" Type="Boolean" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Event" Relationship="RSVPModel.FK_EventMeals_Events" FromRole="EventMeal" ToRole="Event" />
           <NavigationProperty Name="Replies" Relationship="RSVPModel.FK_Replies_EventMeals" FromRole="EventMeal" ToRole="Reply" />
@@ -214,6 +238,10 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsChild" Type="Boolean" Nullable="false" />
+          <Property Name="CanBringGuest" Type="Boolean" Nullable="false" />
+          <Property Name="ReferenceGuestID" Type="Int32" />
+          <NavigationProperty Name="Guest1" Relationship="RSVPModel.FK_Guest_Guest" FromRole="Guest" ToRole="Guest1" />
+          <NavigationProperty Name="Guest2" Relationship="RSVPModel.FK_Guest_Guest" FromRole="Guest1" ToRole="Guest" />
           <NavigationProperty Name="GuestEventJunctions" Relationship="RSVPModel.FK_GuestEventJunction_Guest" FromRole="Guest" ToRole="GuestEventJunction" />
         </EntityType>
         <EntityType Name="GuestEventJunction">
@@ -277,6 +305,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Guest_Guest">
+          <End Type="RSVPModel.Guest" Role="Guest" Multiplicity="0..1" />
+          <End Type="RSVPModel.Guest" Role="Guest1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="Guest1">
+              <PropertyRef Name="ReferenceGuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GuestEventJunction_Guest">
           <End Type="RSVPModel.Guest" Role="Guest" Multiplicity="1" />
           <End Type="RSVPModel.GuestEventJunction" Role="GuestEventJunction" Multiplicity="*" />
@@ -311,6 +351,7 @@
             <EntityTypeMapping TypeName="RSVPModel.EventMeal">
               <MappingFragment StoreEntitySet="EventMeals">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsChild" ColumnName="IsChild" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="MealId" ColumnName="MealId" />
               </MappingFragment>
@@ -336,6 +377,8 @@
           <EntitySetMapping Name="Guests">
             <EntityTypeMapping TypeName="RSVPModel.Guest">
               <MappingFragment StoreEntitySet="Guest">
+                <ScalarProperty Name="ReferenceGuestID" ColumnName="ReferenceGuestID" />
+                <ScalarProperty Name="CanBringGuest" ColumnName="CanBringGuest" />
                 <ScalarProperty Name="IsChild" ColumnName="IsChild" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

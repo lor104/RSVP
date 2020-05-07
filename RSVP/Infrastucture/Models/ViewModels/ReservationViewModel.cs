@@ -10,13 +10,16 @@ namespace RSVP.Infrastucture.Models.ViewModels
 {
     public class ReservationViewModel
     {
-        public string FullName { get; set; }
-
-        public int GuestId { get; set; }
+        public GuestViewModel Guest { get; set; }
 
         [Required(ErrorMessage = "Email is required, we hope we won't need it, but in case we need to get in touch with you, we'd like to have it!")]
         [Display(Name = "Attendee Email")]
         public string AttendeeEmail { get; set; }
+        public bool? IsBringingGuest { get; set; }
+        [Display(Name ="Guest First Name")]
+        public string GuestFirstName { get; set; }
+        [Display(Name = "Guest Last Name")]
+        public string GuestLastName { get; set; }
 
         #region Recurring fields per event
         public List<ReplyViewModel> ReplyList { get; set; }
@@ -62,5 +65,39 @@ namespace RSVP.Infrastucture.Models.ViewModels
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string Venue { get; set; }
+    }
+
+    public class GuestViewModel
+    {
+        public GuestViewModel(Guest guestData)
+        {
+            GuestId = guestData.GuestID;
+            IsChild = guestData.IsChild;
+            FirstName = guestData.FirstName;
+            LastName = guestData.LastName;
+            CanBringGuest = guestData.CanBringGuest;
+        }
+
+        public GuestViewModel()
+        {
+
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return FirstName?.Trim() + " " + LastName?.Trim();
+            }
+        }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public int GuestId { get; set; }
+
+        public bool IsChild { get; set; }
+
+        public bool CanBringGuest { get; set; }
     }
 }

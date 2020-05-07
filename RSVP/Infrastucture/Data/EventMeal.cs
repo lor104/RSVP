@@ -22,6 +22,7 @@ namespace RSVP.Infrastucture.Data
     
         public int MealId { get; set; }
         public int EventId { get; set; }
+        public bool IsChild { get; set; }
         public string Name { get; set; }
     
         public virtual Event Event { get; set; }
