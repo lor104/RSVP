@@ -65,7 +65,6 @@ namespace RSVP.Controllers
                 {
                     // Try to find guest based on first/last names
                     Guest guest = db.Guests.FirstOrDefault(x => x.FirstName == viewModel.FirstName && x.LastName == viewModel.LastName);
-                    CookieHelper.SetCookie("gid", StringCipher.Encrypt(guest.GuestID.ToString()));
 
                     if (guest == null)
                     {
@@ -73,6 +72,7 @@ namespace RSVP.Controllers
                     }
                     else if (guest.GuestEventJunctions.Count(x => x.RepliesID == null) > 0)
                     {
+                        CookieHelper.SetCookie("gid", StringCipher.Encrypt(guest.GuestID.ToString()));
                         return RedirectToAction("Reserve");
                     }
                     else
