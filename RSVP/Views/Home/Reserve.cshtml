@@ -27,7 +27,7 @@
                 </div>
                 <div class="event-group-line event-attending">
                     <div>
-                        <p class="">Will you be joining us on @Model.ReplyList[i].Event.StartDate, at @Model.ReplyList[i].Event.Venue, for @Model.ReplyList[i].Event.Subtitle</p>
+                        <p class="">Will you be joining us on @Model.ReplyList[i].Event.StartDate.ToString("dddd, MMMM d") at @Model.ReplyList[i].Event.Venue, for @Model.ReplyList[i].Event.Subtitle?</p>
                     </div>
                     @Html.HiddenFor(x => Model.ReplyList[i].Attending)
                     <div class="btn-group">
@@ -77,10 +77,12 @@
                     <div class="form-input">
                         @Html.LabelFor(x => Model.GuestFirstName)
                         @Html.TextBoxFor(x => Model.GuestFirstName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => Model.GuestFirstName)
                     </div>
                     <div class="form-input">
                         @Html.LabelFor(x => Model.GuestLastName)
                         @Html.TextBoxFor(x => Model.GuestLastName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => Model.GuestLastName)
                     </div>
                 </div>
             </div>

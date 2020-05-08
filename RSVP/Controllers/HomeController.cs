@@ -145,6 +145,15 @@ namespace RSVP.Controllers
                             if (guest.CanBringGuest && !viewModel.IsBringingGuest.HasValue)
                             {
                                 ModelState.AddModelError("IsBringingGuest", "Please let us know if you will be bringing a guest.");
+                                if (string.IsNullOrEmpty(viewModel.GuestFirstName))
+                                {
+                                    ModelState.AddModelError("GuestFirstName", "Please provide the first name of your guest.");
+                                }
+                                if (string.IsNullOrEmpty(viewModel.GuestLastName))
+                                {
+                                    ModelState.AddModelError("GuestLastName", "Please provide the last name of your guest.");
+
+                                }
                             }
                         }
                     }
@@ -155,6 +164,8 @@ namespace RSVP.Controllers
                 {
                     // Massage data
                     viewModel.AttendeeEmail = viewModel.AttendeeEmail.Trim();
+                    viewModel.GuestFirstName = viewModel.GuestFirstName?.Trim();
+                    viewModel.GuestLastName = viewModel.GuestLastName?.Trim();
 
                     try
                     {
